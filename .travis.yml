@@ -1,0 +1,9 @@
+language: csharp
+solution: ThePongMobile.sln
+
+jobs:
+  include:
+     - dotnet: 3.0.100
+     - mono: none
+     - env: DOTNETCORE=2
+     - mono: latest
