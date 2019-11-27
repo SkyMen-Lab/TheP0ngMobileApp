@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ThePongMobile"
+             x:Class="ThePongMobile.MainPage">
+
+    <StackLayout>
+        <!-- Place new controls here -->
+        <material:MaterialLabel
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            FontSize="Header"
+            Text="{Binding Score}"/>
+        <StackLayout
+            HorizontalOptions="CenterAndExpand"
+            VerticalOptions="CenterAndExpand">
+            <material:MaterialButton
+                Text="Up"
+                Command="{Binding Move}">
+                <material:MaterialButton.CommandParameter>
+                    <x:Int32>
+                        0
+                    </x:Int32>
+                </material:MaterialButton.CommandParameter>
+            </material:MaterialButton>
+            <material:MaterialButton
+                Text="Down"
+                Command="{Binding Move}">
+                <material:MaterialButton.CommandParameter>
+                    <x:Int32>
+                        1
+                    </x:Int32>
+                </material:MaterialButton.CommandParameter>
+            </material:MaterialButton>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

@@ -2,3 +2,13 @@
 .idea/.idea.ThePongMobile/.idea/
 
 .idea/.idea.ThePongMobile/
+
+.vs/ThePongMobile/xs/project-cache/
+ThePongMobile/ThePongMobile.Android/bin/
+ThePongMobile/ThePongMobile.Android/obj/
+ThePongMobile/ThePongMobile.iOS/bin/
+ThePongMobile/ThePongMobile.iOS/obj/
+ThePongMobile/ThePongMobile/bin/
+ThePongMobile/ThePongMobile/obj/
+ThePongMobile/ThePongMobile.Android/obj/*
+.vs/
