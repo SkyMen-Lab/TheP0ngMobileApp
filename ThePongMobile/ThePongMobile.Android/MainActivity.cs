@@ -6,6 +6,7 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using XF;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace ThePongMobile.Android
 {
@@ -20,6 +21,7 @@ namespace ThePongMobile.Android
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             XF.Material.Droid.Material.Init(this, savedInstanceState);
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using ThePongMobile.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms.UI;
@@ -13,7 +14,7 @@ namespace ThePongMobile
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new MaterialNavigationPage(new MainPage());
+            MainPage = new MaterialNavigationPage(new SetupPage());
         }
 
         protected override void OnStart()

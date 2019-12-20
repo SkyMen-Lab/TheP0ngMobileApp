@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
+             mc:Ignorable="d"
+             x:Class="ThePongMobile.Views.MainScreenPage"
+             NavigationPage.HasBackButton="false"
+             NavigationPage.HasNavigationBar="false">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+            <ui:MaterialButton ImageSource="{local:EmbeddedImages ID=ThePongMobile.Images.upArrow.png}"
+                         HeightRequest="200"
+                         WidthRequest="200"
+                         CornerRadius="50"
+                         Clicked="UpArrowClicked"
+                         BackgroundColor="#6200EE"
+                         BorderColor="#3700B3"
+                         BorderWidth="5"/>
+            <ui:MaterialButton ImageSource="{local:EmbeddedImages ID=ThePongMobile.Images.downArrow.png}"
+                         HeightRequest="200"
+                         WidthRequest="200"
+                         CornerRadius="50"
+                         Clicked="DownArrowClicked"
+                         BackgroundColor="#6200EE"
+                         BorderColor="#3700B3" 
+                         BorderWidth="5"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
