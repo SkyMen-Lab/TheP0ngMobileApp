@@ -16,7 +16,9 @@ namespace ThePongMobile.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetupPage : ContentPage
     {
-        
+        private bool isEntryCodeCompleted = false;
+        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
+        private readonly HttpClient _client = new HttpClient();
         public SetupPage()
         {
             InitializeComponent();
@@ -24,15 +26,18 @@ namespace ThePongMobile.Views
 
         private void ContinuePressed(object sender, EventArgs e)
         {
+            if (isEntryCodeCompleted)
                 SetupPageViewModel.ContinueButtonPressed();
+            else
+                SchoolCode.HasError = true;
         }
 
         private async void EntryCodeCompleted(object sender, EventArgs e)
         {
             string RawJSON = await _client.GetStringAsync(URL);
             ConfigData JsonData = JsonConvert.DeserializeObject<ConfigData>(RawJSON);
-            string EntryCode = JsonData.Code;
-            if (EntryCode == SchoolCode.Text)
+            string SchoolEntryCode = JsonData.Code;
+            if (SchoolEntryCode == SchoolCode.Text)
             {
                 isEntryCodeCompleted = true;
                 SchoolCode.HasError = false;

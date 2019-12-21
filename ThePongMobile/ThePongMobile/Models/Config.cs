@@ -24,29 +24,5 @@ namespace ThePongMobile.Models
 
         [JsonProperty("configId")]
         public long ConfigId { get; set; }
-
-        [JsonProperty("config")]
-        public Config Config { get; set; }
-
-        [JsonProperty("gamesWon")]
-        public object GamesWon { get; set; }
-
-        [JsonProperty("teamGameSummaries")]
-        public object TeamGameSummaries { get; set; }
-    }
-
-    public partial class Config
-    {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
-        [JsonProperty("routerIpAddress")]
-        public string RouterIpAddress { get; set; }
-
-        [JsonProperty("routerPort")]
-        public long RouterPort { get; set; }
-
-        [JsonProperty("connectionType")]
-        public long ConnectionType { get; set; }
     }
 }

@@ -23,7 +23,7 @@
                    Padding="0, 10" TextColor="#212121"/>
             <ui:MaterialTextField Placeholder="School Code" Completed="EntryCodeCompleted"
                                   ErrorText="Invalid School Code Entered"
-                                  InputType="Numeric" x:Name="SchoolCode"/>
+                                  InputType="Default" x:Name="SchoolCode"/>
             <ui:MaterialButton Text="Continue" Clicked="ContinuePressed"/>
 
         </StackLayout>
