@@ -17,5 +17,9 @@ namespace ThePongMobile
             InitializeComponent();
             BindingContext = new MainPageViewModel(_networkService);
         }
+        protected override bool OnBackButtonPressed()
+        {
+            return true;
+        }
     }
 }

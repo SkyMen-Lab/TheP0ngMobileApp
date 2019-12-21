@@ -24,7 +24,7 @@
                    Padding="0, 10" TextColor="#212121"/>
         <ui:MaterialTextField Placeholder="Game Code"
                                   ErrorText="Invalid School Code Entered"
-                                  InputType="Numeric" />
+                                  InputType="Numeric" Completed="GameSessionCodeEntered" x:Name="GameCode"/>
         <ui:MaterialButton Text="Play" Clicked="PlayButtonClicked"/>
 
     </StackLayout>

@@ -10,7 +10,7 @@ namespace ThePongMobile.ViewModels
     {
         public static async void PlayButtonPressed()
         {
-            await Application.Current.MainPage.Navigation.PushAsync(new MainScreenPage());
+            await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
         }
     }
 }
