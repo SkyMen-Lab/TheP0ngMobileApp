@@ -6,9 +6,9 @@ using Xamarin.Forms;
 
 namespace ThePongMobile.ViewModels
 {
-    public class LoginPageViewModel
+    public class LoginPageViewModel : BaseViewModel
     {
-        public static async void PlayButtonPressed()
+        public async void PlayButtonPressed()
         {
             await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
         }

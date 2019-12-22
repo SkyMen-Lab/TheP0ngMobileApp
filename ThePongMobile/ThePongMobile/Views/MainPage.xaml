@@ -20,7 +20,7 @@
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.upArrow.png}"
                 Command="{Binding Move}"
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                BackgroundColor="#6200EE" CornerRadius="10000">
+                BackgroundColor="#6200EE" CornerRadius="50">
         <material:MaterialButton.CommandParameter>
             <x:Int32>
                 0
@@ -31,7 +31,7 @@
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.downArrow.png}"
                 Command="{Binding Move}"
                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                BackgroundColor="#6200EE" CornerRadius="10000">
+                BackgroundColor="#6200EE" CornerRadius="50">
             <material:MaterialButton.CommandParameter>
                 <x:Int32>
                     1

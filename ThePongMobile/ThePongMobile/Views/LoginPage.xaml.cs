@@ -12,9 +12,9 @@ using Xamarin.Forms.Xaml;
 
 namespace ThePongMobile.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
+        LoginPageViewModel _LoginPageViewModel = new LoginPageViewModel();
         public LoginPage()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace ThePongMobile.Views
 
         private void PlayButtonClicked(object sender, EventArgs e)
         {
-            LoginPageViewModel.PlayButtonPressed();
+            _LoginPageViewModel.PlayButtonPressed();   
         }
 
         private void GameSessionCodeEntered(object sender, EventArgs e)

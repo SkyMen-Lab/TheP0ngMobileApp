@@ -13,12 +13,13 @@ using Xamarin.Forms.Xaml;
 
 namespace ThePongMobile.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetupPage : ContentPage
     {
-        private bool isEntryCodeCompleted = false;
-        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
-        private readonly HttpClient _client = new HttpClient();
+        SetupPageViewModel setupPageViewModel = new SetupPageViewModel();
+
+        public bool isEntryCodeCompleted = false;
+        public const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
+        public readonly HttpClient _client = new HttpClient();
         public SetupPage()
         {
             InitializeComponent();
@@ -26,8 +27,8 @@ namespace ThePongMobile.Views
 
         private void ContinuePressed(object sender, EventArgs e)
         {
-            if (isEntryCodeCompleted)
-                SetupPageViewModel.ContinueButtonPressed();
+            if(isEntryCodeCompleted) 
+                setupPageViewModel.ContinueButtonPressed();
             else
                 SchoolCode.HasError = true;
         }

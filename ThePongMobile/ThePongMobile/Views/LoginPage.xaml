@@ -6,10 +6,13 @@
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
+             xmlns:local1="clr-namespace:ThePongMobile.ViewModels"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.LoginPage"
              NavigationPage.HasBackButton="false">
-    
+    <ContentPage.BindingContext>
+        <local1:LoginPageViewModel/>
+    </ContentPage.BindingContext>
     <StackLayout VerticalOptions="CenterAndExpand" 
                      HorizontalOptions="CenterAndExpand"
                      Padding="50, 50, 50, 50">
@@ -24,8 +27,9 @@
                    Padding="0, 10" TextColor="#212121"/>
         <ui:MaterialTextField Placeholder="Game Code"
                                   ErrorText="Invalid School Code Entered"
-                                  InputType="Numeric" Completed="GameSessionCodeEntered" x:Name="GameCode"/>
+                                  InputType="Default" 
+                                  Completed="GameSessionCodeEntered" 
+                                  x:Name="GameCode"/>
         <ui:MaterialButton Text="Play" Clicked="PlayButtonClicked"/>
-
     </StackLayout>
 </ContentPage>

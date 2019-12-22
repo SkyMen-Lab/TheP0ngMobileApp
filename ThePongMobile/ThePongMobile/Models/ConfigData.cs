@@ -7,8 +7,9 @@ namespace ThePongMobile.Models
 {
     public partial class ConfigData
     {
+
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty("code")]
         public string Code { get; set; }
@@ -17,12 +18,13 @@ namespace ThePongMobile.Models
         public string Name { get; set; }
 
         [JsonProperty("rank")]
-        public long Rank { get; set; }
+        public int Rank { get; set; }
 
         [JsonProperty("winningRate")]
-        public long WinningRate { get; set; }
+        public int WinningRate { get; set; }
 
         [JsonProperty("configId")]
-        public long ConfigId { get; set; }
+        public int ConfigId { get; set; }
     }
 }
+
