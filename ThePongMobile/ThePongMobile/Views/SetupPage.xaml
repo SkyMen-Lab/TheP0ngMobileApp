@@ -21,10 +21,13 @@
             <Label Text="Enter in your School Code here" FontSize="Medium"
                    FontAttributes="Bold" HorizontalTextAlignment="Center"
                    Padding="0, 10" TextColor="#212121"/>
-            <ui:MaterialTextField Placeholder="School Code" Completed="EntryCodeCompleted"
+            <ui:MaterialTextField Placeholder="School Code" 
                                   ErrorText="Invalid School Code Entered"
-                                  InputType="Default" x:Name="SchoolCode"/>
-            <ui:MaterialButton Text="Continue" Clicked="ContinuePressed"/>
+                                  HasError="{Binding HasError, Mode=TwoWay}"
+                                  Text="{Binding SchoolCode, Mode=TwoWay}" 
+                                  ReturnCommand="{Binding EntryCompletedCommand}"/>
+            <ui:MaterialButton Text="Continue"
+                               Command="{Binding ContinueCommand}"/>
 
         </StackLayout>
     </ContentPage.Content>

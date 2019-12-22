@@ -28,8 +28,7 @@
         <ui:MaterialTextField Placeholder="Game Code"
                                   ErrorText="Invalid School Code Entered"
                                   InputType="Default" 
-                                  Completed="GameSessionCodeEntered" 
-                                  x:Name="GameCode"/>
+                                  Completed="GameSessionCodeEntered"/>
         <ui:MaterialButton Text="Play" Clicked="PlayButtonClicked"/>
     </StackLayout>
 </ContentPage>
