@@ -6,29 +6,25 @@
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
-             xmlns:local1="clr-namespace:ThePongMobile.ViewModels"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.LoginPage"
              NavigationPage.HasBackButton="false">
-    <ContentPage.BindingContext>
-        <local1:LoginPageViewModel/>
-    </ContentPage.BindingContext>
     <StackLayout VerticalOptions="CenterAndExpand" 
                      HorizontalOptions="CenterAndExpand"
                      Padding="50, 50, 50, 50">
-        <ic:CircleImage 
-                HeightRequest="250"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                Aspect="AspectFill"
-                Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"/>
-        <Label Text="Enter in the Game Session Code" FontSize="Medium"
-                   FontAttributes="Bold" HorizontalTextAlignment="Center"
-                   Padding="0, 10" TextColor="#212121"/>
-        <ui:MaterialTextField Placeholder="Game Code"
-                                  ErrorText="Invalid School Code Entered"
-                                  InputType="Default" 
-                                  Completed="GameSessionCodeEntered"/>
-        <ui:MaterialButton Text="Play" Clicked="PlayButtonClicked"/>
+            <ic:CircleImage 
+                    HeightRequest="250"
+                    WidthRequest="250"
+                    HorizontalOptions="Center" 
+                    Aspect="AspectFill"
+                    Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"/>
+            <Label Text="Enter in the Game Session Code" FontSize="Medium"
+                       FontAttributes="Bold" HorizontalTextAlignment="Center"
+                       Padding="0, 10" TextColor="#212121"/>
+            <ui:MaterialTextField Placeholder="Game Code"
+                                      ErrorText="Invalid School Code Entered"
+                                      InputType="Default" 
+                                      ReturnCommand="{Binding CompletedLoginCommand}"/>
+        <ui:MaterialButton Text="Play" Command="{Binding PlayButtonCommand}"/>
     </StackLayout>
 </ContentPage>

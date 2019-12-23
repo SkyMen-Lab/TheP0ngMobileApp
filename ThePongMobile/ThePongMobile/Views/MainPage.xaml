@@ -2,12 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ThePongMobile"
              xmlns:local1="clr-namespace:ThePongMobile.MarkUpExtentions"
              x:Class="ThePongMobile.MainPage"
-             NavigationPage.HasBackButton="false">
+             NavigationPage.HasNavigationBar="false">
 
-    <Grid ColumnSpacing="0" RowSpacing="0">
+    <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="#33264F">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -20,7 +19,7 @@
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.upArrow.png}"
                 Command="{Binding Move}"
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                BackgroundColor="#6200EE" CornerRadius="50">
+                BackgroundColor="#A0499D" >
         <material:MaterialButton.CommandParameter>
             <x:Int32>
                 0
@@ -31,7 +30,7 @@
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.downArrow.png}"
                 Command="{Binding Move}"
                 Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
-                BackgroundColor="#6200EE" CornerRadius="50">
+                BackgroundColor="#A0499D">
             <material:MaterialButton.CommandParameter>
                 <x:Int32>
                     1

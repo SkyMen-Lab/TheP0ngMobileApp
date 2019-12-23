@@ -15,10 +15,9 @@ namespace ThePongMobile.ViewModels
         public ICommand EntryCompletedCommand { get; private set; }
         public ICommand ContinueCommand { get; private set; }
 
-        public bool isEntryCodeCompleted = false;
-        public const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
-        public readonly HttpClient _client = new HttpClient();
-        
+        private bool isEntryCodeCompleted = false;
+        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
+        private readonly HttpClient _client = new HttpClient();
         private bool _haserror;
         private string _schoolcode;
         private readonly PageService _pageService;
