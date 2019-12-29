@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using ThePongMobile.Models;
+using ThePongMobile.Services;
 using ThePongMobile.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,7 +17,7 @@ namespace ThePongMobile.Views
     {
         public LoginPage()
         {
-            BindingContext = new LoginPageViewModel(new PageService());
+            BindingContext = new LoginPageViewModel();
             InitializeComponent();
         }
         protected override bool OnBackButtonPressed()

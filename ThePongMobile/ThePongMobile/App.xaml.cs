@@ -1,8 +1,10 @@
 ﻿using System;
+using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms.UI;
+using ThePongMobile.ViewModels;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -13,6 +15,7 @@ namespace ThePongMobile
         public App()
         {
             InitializeComponent();
+            _ = new Containers();
             XF.Material.Forms.Material.Init(this);
             MainPage = new MaterialNavigationPage(new SetupPage());
         }

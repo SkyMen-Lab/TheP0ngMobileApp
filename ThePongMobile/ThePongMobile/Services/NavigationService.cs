@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using ThePongMobile.Services;
 using Xamarin.Forms;
 
-namespace ThePongMobile.ViewModels
+namespace ThePongMobile.Services
 {
-    public class PageService : INavigationService
+    public class NavigationService : INavigationService
     {
         //public void OpenPage(Page nextPage)
         //{

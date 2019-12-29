@@ -6,10 +6,8 @@ namespace ThePongMobile.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        private INetworkService _networkService;
-        public MainPageViewModel(INetworkService networkService)
+        public MainPageViewModel()
         {
-            _networkService = networkService;
             Move = new Command<int>(MoveCommand);
         }
         
@@ -25,8 +23,8 @@ namespace ThePongMobile.ViewModels
 
         private void MoveCommand(int direction)
         {
-            _networkService.SendMessage(direction);
-            Score = _networkService.ReceiveScore();
+            Containers._networkService.SendMessage(direction);
+            Score = Containers._networkService.ReceiveScore();
         }
     }
 }

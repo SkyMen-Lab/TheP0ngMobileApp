@@ -11,11 +11,10 @@ namespace ThePongMobile
 {
     public partial class MainPage : ContentPage
     {
-        NetworkService _networkService = new NetworkService();
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel(_networkService);
+            BindingContext = new MainPageViewModel();
         }
         protected override bool OnBackButtonPressed()
         {

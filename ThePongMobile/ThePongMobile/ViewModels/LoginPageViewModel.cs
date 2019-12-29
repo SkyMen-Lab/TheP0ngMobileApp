@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 
@@ -12,18 +13,15 @@ namespace ThePongMobile.ViewModels
         public ICommand PlayButtonCommand { get; private set; }
         public ICommand CompletedLoginCommand { get; private set; }
 
-
-        private readonly PageService _pageService;
-        public LoginPageViewModel(PageService pageservice)
+        public LoginPageViewModel()
         {
-            _pageService = pageservice;
+
             PlayButtonCommand = new Command(PlayButtonPressed);
             CompletedLoginCommand = new Command(EnteredLoginEntry);
-
         }
         private async void PlayButtonPressed()
         {
-            await _pageService.PushAsync(new MainPage());
+            await Containers._navigationService.PushAsync(new MainPage());
 
         }
         private void EnteredLoginEntry()

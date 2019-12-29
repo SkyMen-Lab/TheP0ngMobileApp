@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Text;
 using System.Windows.Input;
 using ThePongMobile.Models;
+using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 
@@ -20,8 +21,7 @@ namespace ThePongMobile.ViewModels
         private readonly HttpClient _client = new HttpClient();
         private bool _haserror;
         private string _schoolcode;
-        private readonly PageService _pageService;
-
+        private string JsonSchoolEntryGameCode;
         public bool HasError 
         {
             get => _haserror; 
@@ -34,28 +34,31 @@ namespace ThePongMobile.ViewModels
             set => SetValue(ref _schoolcode, value);
         }
         
-        public SetupPageViewModel(PageService pageservice)
+        public SetupPageViewModel()
         {
-            _pageService = pageservice;
-
+            GetJsonData();
             EntryCompletedCommand = new Command(EntryCodeCompleted);
             ContinueCommand = new Command(ContinueButtonPressed);
+        }
+        private async void GetJsonData()
+        {
+            string RawJSON = await _client.GetStringAsync(URL);
+            ConfigData JsonData = JsonConvert.DeserializeObject<ConfigData>(RawJSON);
+            JsonSchoolEntryGameCode = JsonData.Code;
         }
 
         private async void ContinueButtonPressed()
         {
             if (isEntryCodeCompleted)
-                await _pageService.PushAsync(new LoginPage());
-            else
+                await Containers._navigationService.PushAsync(new LoginPage());
+            else if (!isEntryCodeCompleted)
                 HasError = true;
         }
 
-        private async void EntryCodeCompleted()
+        private void EntryCodeCompleted()
         {
-            string RawJSON = await _client.GetStringAsync(URL);
-            ConfigData JsonData = JsonConvert.DeserializeObject<ConfigData>(RawJSON);
-            string SchoolEntryCode = JsonData.Code;
-            if (SchoolEntryCode == SchoolCode)
+            
+            if (JsonSchoolEntryGameCode == SchoolCode)
             {
                 isEntryCodeCompleted = true;
                 HasError = false;
