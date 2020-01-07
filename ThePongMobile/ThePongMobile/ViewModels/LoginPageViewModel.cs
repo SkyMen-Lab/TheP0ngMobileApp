@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -28,5 +28,5 @@ namespace ThePongMobile.ViewModels
         {
             //Checks login details here for navigation;
         }
-    }
-}
+     }
+ }
