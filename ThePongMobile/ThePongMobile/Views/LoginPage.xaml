@@ -1,13 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ThePongMobile.Views.LoginPage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Hello, world!"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
+             mc:Ignorable="d"
+             x:Class="ThePongMobile.Views.LoginPage"
+             NavigationPage.HasBackButton="false">
+    <StackLayout VerticalOptions="CenterAndExpand" 
+                     HorizontalOptions="CenterAndExpand"
+                     Padding="50, 50, 50, 50">
+            <ic:CircleImage 
+                    HeightRequest="250"
+                    WidthRequest="250"
+                    HorizontalOptions="Center" 
+                    Aspect="AspectFill"
+                    Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"/>
+            <Label Text="Enter in the Game Session Code" FontSize="Medium"
+                       FontAttributes="Bold" HorizontalTextAlignment="Center"
+                       Padding="0, 10" TextColor="#212121"/>
+            <ui:MaterialTextField Placeholder="Game Code"
+                                      ErrorText="Invalid School Code Entered"
+                                      InputType="Default" 
+                                      ReturnCommand="{Binding CompletedLoginCommand}"/>
+        <ui:MaterialButton Text="Play" Command="{Binding PlayButtonCommand}"/>
+    </StackLayout>
 </ContentPage>

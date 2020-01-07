@@ -2,38 +2,40 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:ThePongMobile"
-             x:Class="ThePongMobile.MainPage">
+             xmlns:local1="clr-namespace:ThePongMobile.MarkUpExtentions"
+             x:Class="ThePongMobile.MainPage"
+             NavigationPage.HasNavigationBar="false">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <material:MaterialLabel
-            HorizontalOptions="Center"
-            VerticalOptions="Start"
-            FontSize="Header"
-            Text="{Binding Score}"/>
-        <StackLayout
-            HorizontalOptions="CenterAndExpand"
-            VerticalOptions="CenterAndExpand">
-            <material:MaterialButton
-                Text="Up"
-                Command="{Binding Move}">
-                <material:MaterialButton.CommandParameter>
-                    <x:Int32>
-                        0
-                    </x:Int32>
-                </material:MaterialButton.CommandParameter>
+    <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="#33264F">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <material:MaterialButton
+                ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.upArrow.png}"
+                Command="{Binding Move}"
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                BackgroundColor="#A0499D" >
+        <material:MaterialButton.CommandParameter>
+            <x:Int32>
+                0
+            </x:Int32>
+        </material:MaterialButton.CommandParameter>
             </material:MaterialButton>
-            <material:MaterialButton
-                Text="Down"
-                Command="{Binding Move}">
-                <material:MaterialButton.CommandParameter>
-                    <x:Int32>
-                        1
-                    </x:Int32>
-                </material:MaterialButton.CommandParameter>
-            </material:MaterialButton>
-        </StackLayout>
-    </StackLayout>
-
+                <material:MaterialButton
+                ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.downArrow.png}"
+                Command="{Binding Move}"
+                Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                BackgroundColor="#A0499D">
+            <material:MaterialButton.CommandParameter>
+                <x:Int32>
+                    1
+                </x:Int32>
+            </material:MaterialButton.CommandParameter>
+        </material:MaterialButton>
+    </Grid>
 </ContentPage>

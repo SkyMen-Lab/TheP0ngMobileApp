@@ -1,19 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using ThePongMobile.Services;
+using ThePongMobile.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
 namespace ThePongMobile.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SetupPage : ContentPage
     {
         public SetupPage()
         {
+            BindingContext = new SetupPageViewModel();
             InitializeComponent();
         }
     }

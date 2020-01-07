@@ -10,11 +10,31 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
+      <None Remove="Images\Cat.png" />
+      <None Remove="Images\downArrow.png" />
+      <None Remove="Images\upArrow.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Include="Images\Cat.png" />
+      <EmbeddedResource Include="Images\downArrow.png" />
+      <EmbeddedResource Include="Images\upArrow.png" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Unity" Version="5.11.2" />
+        <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
+        <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
         <PackageReference Include="XF.Material" Version="1.5.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Utils" />
+      <EmbeddedResource Update="Views\LoginPage.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Views\SetupPage.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
     </ItemGroup>
 </Project>
