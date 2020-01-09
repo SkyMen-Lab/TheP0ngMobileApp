@@ -8,6 +8,7 @@ using ThePongMobile.Models;
 using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
+using System.Reflection;
 
 namespace ThePongMobile.ViewModels
 {
@@ -22,6 +23,7 @@ namespace ThePongMobile.ViewModels
         private bool _haserror;
         private string _schoolcode;
         private string JsonSchoolEntryGameCode;
+        private INavigationService _navigationService;
         public bool HasError 
         {
             get => _haserror; 
@@ -34,8 +36,9 @@ namespace ThePongMobile.ViewModels
             set => SetValue(ref _schoolcode, value);
         }
         
-        public SetupPageViewModel()
+        public SetupPageViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             GetJsonData();
             EntryCompletedCommand = new Command(EntryCodeCompleted);
             ContinueCommand = new Command(ContinueButtonPressed);
@@ -50,7 +53,7 @@ namespace ThePongMobile.ViewModels
         private async void ContinueButtonPressed()
         {
             if (isEntryCodeCompleted)
-                await Containers._navigationService.PushAsync(new LoginPage());
+                await _navigationService.PushAsync(Activator.CreateInstance<LoginPage>());
             else if (!isEntryCodeCompleted)
                 HasError = true;
         }

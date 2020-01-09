@@ -106,9 +106,7 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Unity">
-      <Version>5.11.2</Version>
-    </PackageReference>
+    <PackageReference Include="TinyIoC" Version="1.3.0" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />
     <PackageReference Include="XF.Material" Version="1.5.7" />
   </ItemGroup>

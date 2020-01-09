@@ -5,9 +5,9 @@ namespace ThePongMobile.Views
 {
     public partial class SetupPage : ContentPage
     {
-        public SetupPage()
+        public SetupPage(SetupPageViewModel setupPageViewModel)
         {
-            BindingContext = new SetupPageViewModel();
+            BindingContext = setupPageViewModel;
             InitializeComponent();
         }
     }

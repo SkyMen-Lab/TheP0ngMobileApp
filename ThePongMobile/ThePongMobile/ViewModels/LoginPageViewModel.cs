@@ -12,16 +12,17 @@ namespace ThePongMobile.ViewModels
     {
         public ICommand PlayButtonCommand { get; private set; }
         public ICommand CompletedLoginCommand { get; private set; }
+        private INavigationService _navigationService;
 
-        public LoginPageViewModel()
+        public LoginPageViewModel(INavigationService navigationService)
         {
-
+            _navigationService = navigationService;
             PlayButtonCommand = new Command(PlayButtonPressed);
             CompletedLoginCommand = new Command(EnteredLoginEntry);
         }
         private async void PlayButtonPressed()
         {
-            await Containers._navigationService.PushAsync(new MainPage());
+            await _navigationService.PushAsync(Activator.CreateInstance<MainPage>());
 
         }
         private void EnteredLoginEntry()

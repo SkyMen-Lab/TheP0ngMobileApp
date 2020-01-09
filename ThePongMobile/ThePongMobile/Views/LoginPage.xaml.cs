@@ -15,9 +15,9 @@ namespace ThePongMobile.Views
 {     
     public partial class LoginPage : ContentPage
     {
-        public LoginPage()
+        public LoginPage(LoginPageViewModel loginPageViewModel)
         {
-            BindingContext = new LoginPageViewModel();
+            BindingContext = loginPageViewModel;
             InitializeComponent();
         }
         protected override bool OnBackButtonPressed()

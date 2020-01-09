@@ -15,9 +15,9 @@ namespace ThePongMobile
         public App()
         {
             InitializeComponent();
-            _ = new Containers();
+            _ = new IoContainer();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new MaterialNavigationPage(new SetupPage());
+            MainPage = new MaterialNavigationPage(Activator.CreateInstance<SetupPage>());
         }
 
         protected override void OnStart()
