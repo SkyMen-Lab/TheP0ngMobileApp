@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using ThePongMobile.Services;
 using Xamarin.Forms;
@@ -6,6 +7,8 @@ namespace ThePongMobile.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        public override Type PageType => typeof(MainPage);
+
         private INetworkService _networkService;
         public MainPageViewModel(INetworkService networkService)
         {

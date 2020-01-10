@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using ThePongMobile.Services;
 using TinyIoC;
+using Xamarin.Forms;
 
-namespace ThePongMobile.ViewModels
+namespace ThePongMobile.ViewModels.Base
 {
     public static class IoContainer
     {
@@ -19,11 +18,17 @@ namespace ThePongMobile.ViewModels
 
             _container.Register<INavigationService, NavigationService>();
             _container.Register<INetworkService, NetworkService>();
+            _container.Register<IViewLocatorService, ViewLocatorService>();
         }
 
         public static T Resolve<T>() where T : class
         {
             return _container.Resolve<T>();
+        }
+
+        public static object Resolve<T>(T objType) where T: Type
+        {
+            return _container.Resolve(objType);
         }
     }
 }

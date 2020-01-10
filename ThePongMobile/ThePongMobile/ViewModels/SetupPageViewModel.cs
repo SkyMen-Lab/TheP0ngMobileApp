@@ -14,6 +14,8 @@ namespace ThePongMobile.ViewModels
 {
     public class SetupPageViewModel : BaseViewModel
     {
+        public override Type PageType => typeof(SetupPage);
+
         public ICommand EntryCompletedCommand { get; private set; }
         public ICommand ContinueCommand { get; private set; }
 
@@ -25,6 +27,7 @@ namespace ThePongMobile.ViewModels
         private string _schoolcode;
         private string JsonSchoolEntryGameCode;
         private INavigationService _navigationService;
+
         public bool HasError 
         {
             get => _haserror; 
@@ -54,7 +57,7 @@ namespace ThePongMobile.ViewModels
         private async void ContinueButtonPressed()
         {
             if (isEntryCodeCompleted)
-                await _navigationService.PushAsync(new LoginPage(IoContainer.Resolve<LoginPageViewModel>()));
+                await _navigationService.NavigateToAsync<LoginPageViewModel>();
             else if (!isEntryCodeCompleted)
                 HasError = true;
         }

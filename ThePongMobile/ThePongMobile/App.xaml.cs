@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms.UI;
 using ThePongMobile.ViewModels;
+using ThePongMobile.ViewModels.Base;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
@@ -16,12 +18,13 @@ namespace ThePongMobile
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new MaterialNavigationPage(new SetupPage(IoContainer.Resolve<SetupPageViewModel>()));
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
             // Handle when your app starts
+            await InitApp(false);
+
         }
 
         protected override void OnSleep()
@@ -34,9 +37,10 @@ namespace ThePongMobile
             // Handle when your app resumes
         }
 
-        private void InitApp(bool useMocks) 
+        private Task InitApp(bool useMocks)
         {
-            //TODO: init navigation and dependencies
+            var navService = IoContainer.Resolve<INavigationService>();
+            return navService.InitAsync();
         }
     }
 }
