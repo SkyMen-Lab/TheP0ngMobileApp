@@ -22,7 +22,7 @@ namespace ThePongMobile.ViewModels
         }
         private async void PlayButtonPressed()
         {
-            await _navigationService.PushAsync(Activator.CreateInstance<MainPage>());
+            await _navigationService.PushAsync(new MainPage(IoContainer.Resolve<MainPageViewModel>()));
 
         }
         private void EnteredLoginEntry()

@@ -18,6 +18,7 @@ namespace ThePongMobile.ViewModels
         public ICommand ContinueCommand { get; private set; }
 
         private bool isEntryCodeCompleted = false;
+        //TODO: Replace with network service
         private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts"; //Add database website url here
         private readonly HttpClient _client = new HttpClient();
         private bool _haserror;
@@ -53,7 +54,7 @@ namespace ThePongMobile.ViewModels
         private async void ContinueButtonPressed()
         {
             if (isEntryCodeCompleted)
-                await _navigationService.PushAsync(Activator.CreateInstance<LoginPage>());
+                await _navigationService.PushAsync(new LoginPage(IoContainer.Resolve<LoginPageViewModel>()));
             else if (!isEntryCodeCompleted)
                 HasError = true;
         }

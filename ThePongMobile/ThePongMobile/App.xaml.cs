@@ -15,9 +15,8 @@ namespace ThePongMobile
         public App()
         {
             InitializeComponent();
-            _ = new IoContainer();
             XF.Material.Forms.Material.Init(this);
-            MainPage = new MaterialNavigationPage(Activator.CreateInstance<SetupPage>());
+            MainPage = new MaterialNavigationPage(new SetupPage(IoContainer.Resolve<SetupPageViewModel>()));
         }
 
         protected override void OnStart()
@@ -33,6 +32,11 @@ namespace ThePongMobile
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+
+        private void InitApp(bool useMocks) 
+        {
+            //TODO: init navigation and dependencies
         }
     }
 }
