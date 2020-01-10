@@ -1,3 +1,4 @@
+using System;
 using System.Windows.Input;
 using ThePongMobile.Services;
 using Xamarin.Forms;
@@ -6,8 +7,12 @@ namespace ThePongMobile.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel()
+        public override Type PageType => typeof(MainPage);
+
+        private INetworkService _networkService;
+        public MainPageViewModel(INetworkService networkService)
         {
+            _networkService = networkService;
             Move = new Command<int>(MoveCommand);
         }
         
@@ -23,8 +28,8 @@ namespace ThePongMobile.ViewModels
 
         private void MoveCommand(int direction)
         {
-            Containers._networkService.SendMessage(direction);
-            Score = Containers._networkService.ReceiveScore();
+            _networkService.SendMessage(direction);
+            Score = _networkService.ReceiveScore();
         }
     }
 }

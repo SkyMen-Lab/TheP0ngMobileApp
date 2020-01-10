@@ -1,12 +1,17 @@
 using System.Net;
+using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using ThePongMobile.Models;
 using Xamarin.Forms.Internals;
 
 namespace ThePongMobile.Services
 {
-    public class NetworkService : INetworkService
+    public class NetworkServiceMock : INetworkService
     {
+        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
         private int _score = 1;
         public void SendMessage(int direction)
         {
@@ -18,6 +23,14 @@ namespace ThePongMobile.Services
         public int ReceiveScore()
         {
            return _score++;
+        }
+
+        public async Task<ConfigData> GetConfigDataAsync()
+        {
+            HttpClient _client = new HttpClient();
+            string rawJson = await _client.GetStringAsync(URL);
+            ConfigData config = JsonConvert.DeserializeObject<ConfigData>(rawJson);
+            return config;
         }
     }
 }

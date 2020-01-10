@@ -17,7 +17,6 @@ namespace ThePongMobile.Views
     {
         public LoginPage()
         {
-            BindingContext = new LoginPageViewModel();
             InitializeComponent();
         }
         protected override bool OnBackButtonPressed()

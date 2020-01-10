@@ -7,7 +7,6 @@ namespace ThePongMobile.Views
     {
         public SetupPage()
         {
-            BindingContext = new SetupPageViewModel();
             InitializeComponent();
         }
     }

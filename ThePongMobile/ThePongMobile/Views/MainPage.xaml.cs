@@ -14,10 +14,10 @@ namespace ThePongMobile
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
         }
         protected override bool OnBackButtonPressed()
         {
+            //TODO: return to Login Screen
             return true;
         }
     }
