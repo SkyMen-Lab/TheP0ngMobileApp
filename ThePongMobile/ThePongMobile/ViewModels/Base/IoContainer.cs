@@ -15,10 +15,20 @@ namespace ThePongMobile.ViewModels.Base
             _container.Register<LoginPageViewModel>();
             _container.Register<SetupPageViewModel>();
             _container.Register<MainPageViewModel>();
+        }
 
-            _container.Register<INavigationService, NavigationService>();
-            _container.Register<INetworkService, NetworkService>();
+        public static void RegisterServices(bool useMocks)
+        {
             _container.Register<IViewLocatorService, ViewLocatorService>();
+            _container.Register<INavigationService, NavigationService>();
+            if (useMocks)
+            {
+                _container.Register<INetworkService, NetworkServiceMock>();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public static T Resolve<T>() where T : class

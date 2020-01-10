@@ -18,13 +18,13 @@ namespace ThePongMobile
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
+            InitApp(true);
         }
 
         protected override async void OnStart()
         {
             // Handle when your app starts
-            await InitApp(false);
-
+            await InitNavigation();
         }
 
         protected override void OnSleep()
@@ -37,10 +37,15 @@ namespace ThePongMobile
             // Handle when your app resumes
         }
 
-        private Task InitApp(bool useMocks)
+        private Task InitNavigation()
         {
             var navService = IoContainer.Resolve<INavigationService>();
             return navService.InitAsync();
+        }
+
+        private void InitApp(bool useMocks)
+        {
+            IoContainer.RegisterServices(useMocks);
         }
     }
 }
