@@ -1,4 +1,5 @@
 using ThePongMobile.ViewModels;
+using ThePongMobile.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace ThePongMobile.Services

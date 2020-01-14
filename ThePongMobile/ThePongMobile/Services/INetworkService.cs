@@ -7,7 +7,7 @@ namespace ThePongMobile.Services
     {
         void SendMessage(int direction);
         int ReceiveScore();
-        Task<ConfigData> GetConfigDataAsync();
+        Task<SchoolData> GetSchoolDataAsync(string code);
 
     }
 }
