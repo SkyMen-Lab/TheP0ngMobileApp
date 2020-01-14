@@ -24,6 +24,9 @@
             <ui:MaterialTextField Placeholder="Game Code"
                                       ErrorText="Invalid School Code Entered"
                                       InputType="Default" 
+                                      HasError="{Binding HasError, Mode=TwoWay}"
+                                      Text="{Binding SchoolCode, Mode=TwoWay}" 
+
                                       ReturnCommand="{Binding CompletedLoginCommand}"/>
         <ui:MaterialButton Text="Play" Command="{Binding PlayButtonCommand}"/>
     </StackLayout>

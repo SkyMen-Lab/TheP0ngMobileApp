@@ -18,6 +18,7 @@ namespace ThePongMobile.ViewModels
         private bool _isEntryCodeCompleted = false;
         private bool _hasError;
         private string _schoolCode;
+        private string ConfigCode;
         private INavigationService _navigationService;
         private INetworkService _networkService;
         
@@ -43,6 +44,15 @@ namespace ThePongMobile.ViewModels
             _networkService = networkService;
             EntryCompletedCommand = new Command(EntryCodeCompleted);
             ContinueCommand = new Command(ContinueButtonPressed);
+
+            GetConfigDataAsync();
+        }
+
+        private async void GetConfigDataAsync()
+        {
+            //Added a function here otherwise the user could enter the login details and click continue before the API call had been made, now much more unlikely
+            var config =  await _networkService.GetConfigDataAsync();
+            ConfigCode = config.Code;
         }
 
         private async void ContinueButtonPressed()
@@ -53,11 +63,9 @@ namespace ThePongMobile.ViewModels
                 HasError = true;
         }
 
-        private async void EntryCodeCompleted()
+        private void EntryCodeCompleted()
         {
-            var config = await _networkService.GetConfigDataAsync();
-            
-            if (config.Code == SchoolCode)
+            if (ConfigCode == SchoolCode)
             {
                 _isEntryCodeCompleted = true;
                 HasError = false;

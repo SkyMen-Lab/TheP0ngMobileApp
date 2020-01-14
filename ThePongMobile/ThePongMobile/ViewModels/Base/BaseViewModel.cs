@@ -28,6 +28,4 @@ namespace ThePongMobile.ViewModels
         
     }
 }
-        
-           
 
