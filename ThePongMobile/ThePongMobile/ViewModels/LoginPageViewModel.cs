@@ -14,13 +14,8 @@ namespace ThePongMobile.ViewModels
 
         public ICommand PlayButtonCommand { get; private set; }
         public ICommand CompletedLoginCommand { get; private set; }
-        private INavigationService _navigationService;
-<<<<<<< HEAD
 
-        public LoginPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-=======
+        private INavigationService _navigationService;
         private INetworkService _networkService;
 
         private bool _isEntryCodeCompleted = false;
@@ -42,20 +37,14 @@ namespace ThePongMobile.ViewModels
         {
             _navigationService = navigationService;
             _networkService = networkService;
->>>>>>> Added TCP client
             PlayButtonCommand = new Command(PlayButtonPressed);
             CompletedLoginCommand = new Command(EnteredLoginEntry);
         }
+        
         private async void PlayButtonPressed()
         {
-<<<<<<< HEAD
-            await _navigationService.NavigateToAsync<MainPageViewModel>();
-
-        }
-        private void EnteredLoginEntry()
-        {
             //Checks login details here for navigation;
-=======
+
             if (_isEntryCodeCompleted)
                 await _navigationService.NavigateToAsync<MainPageViewModel>();
             else
@@ -81,7 +70,6 @@ namespace ThePongMobile.ViewModels
                 _isEntryCodeCompleted = false;
                 HasError = true;
             }
->>>>>>> Added TCP client
         }
      }
  }

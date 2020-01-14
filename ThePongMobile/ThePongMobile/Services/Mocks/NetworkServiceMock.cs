@@ -32,13 +32,10 @@ namespace ThePongMobile.Services
             ConfigData config = JsonConvert.DeserializeObject<ConfigData>(rawJson);
             return config;
         }
-<<<<<<< HEAD
-=======
 
         public int SendSchoolCode(string server, int port, string schoolCode)
         {
             throw new System.NotImplementedException();
         }
->>>>>>> Added TCP client
     }
 }

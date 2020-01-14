@@ -18,11 +18,7 @@ namespace ThePongMobile
         {
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-<<<<<<< HEAD
-            InitApp(true);
-=======
             InitApp(false);
->>>>>>> Added TCP client
         }
 
         protected override async void OnStart()
