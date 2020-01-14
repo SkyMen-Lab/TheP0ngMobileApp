@@ -27,7 +27,11 @@ namespace ThePongMobile.ViewModels.Base
             }
             else
             {
+<<<<<<< HEAD
                 throw new NotImplementedException();
+=======
+                _container.Register<INetworkService, NetworkService>();
+>>>>>>> Added TCP client
             }
         }
 
