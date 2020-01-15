@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ThePongMobile.Models;
+using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace ThePongMobile.Services.Mocks
 {
@@ -29,7 +31,10 @@ namespace ThePongMobile.Services.Mocks
             HttpClient client = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
-            string newUrl = "http://localhost:5007/api/team/code/" + code;
+            string newUrl;
+            if (Device.RuntimePlatform == Device.Android) 
+                 newUrl = "http://10.0.2.2:5007/api/team/code/" + code;
+            else newUrl = "https://localhost:5008/api/team/code/" + code;
             string rawJson = await client.GetStringAsync(newUrl);
             SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
             return school;

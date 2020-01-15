@@ -7,5 +7,6 @@ namespace ThePongMobile.Services
         T GetConfiguration();
         void SetConfiguration(T config);
         void ClearConfiguration();
+        bool IsSetup();
     }
 }

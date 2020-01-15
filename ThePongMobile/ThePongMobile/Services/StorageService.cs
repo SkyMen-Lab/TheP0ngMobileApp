@@ -30,6 +30,12 @@ namespace ThePongMobile.Services
             Preferences.Set("ip", config.IP);
             Preferences.Set("port", config.Port);
             Preferences.Set("c_type", (int)config.ConnectionType);
+            Preferences.Set("setup", true);
+        }
+
+        public bool IsSetup()
+        {
+            return Preferences.ContainsKey("setup");
         }
         
 
