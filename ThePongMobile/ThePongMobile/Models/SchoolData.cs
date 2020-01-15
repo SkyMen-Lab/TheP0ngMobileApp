@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ThePongMobile.Models
 {
-    public partial class ConfigData
+    public class SchoolData
     {
 
         [JsonProperty("id")]
@@ -21,10 +21,13 @@ namespace ThePongMobile.Models
         public int Rank { get; set; }
 
         [JsonProperty("winningRate")]
-        public int WinningRate { get; set; }
+        public double WinningRate { get; set; }
 
         [JsonProperty("configId")]
         public int ConfigId { get; set; }
+        
+        [JsonProperty("config")]
+        public ConnectionConfig Config { get; set; }
     }
 }
 

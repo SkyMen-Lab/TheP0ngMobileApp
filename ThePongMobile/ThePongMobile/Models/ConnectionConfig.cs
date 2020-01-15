@@ -1,21 +1,20 @@
+using Newtonsoft.Json;
+
 namespace ThePongMobile.Models
 {
     public class ConnectionConfig
     {
-        private int _port;
+        [JsonProperty("routerIpAddress")]
+        public string IP { get; set; }
+        [JsonProperty("routerPort")]
+        public int Port { get; set; }
+        [JsonProperty("connectionType")]
+        public ConnectionType ConnectionType { get; set; }
+    }
 
-        public int Port
-        {
-            get => _port;
-            set => _port = value;
-        }
-
-        private string _ip;
-
-        public string Ip
-        {
-            get => _ip;
-            set => _ip = value;
-        }
+    public enum ConnectionType
+    {
+        UDP,
+        TCP
     }
 }

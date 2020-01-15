@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using ThePongMobile.Services;
+using ThePongMobile.ViewModels.Base;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 

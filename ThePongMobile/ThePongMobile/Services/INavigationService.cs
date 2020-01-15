@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using ThePongMobile.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace ThePongMobile.Services
@@ -7,8 +8,8 @@ namespace ThePongMobile.Services
     {
         //TODO: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/enterprise-application-patterns/navigation 
         Task InitAsync();
-        Task NavigateToAsync<TViewModel>() where TViewModel : ViewModels.BaseViewModel;
-        Task NavigateToAsync<TViewModel>(object param) where TViewModel : ViewModels.BaseViewModel;
+        Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel;
+        Task NavigateToAsync<TViewModel>(object param) where TViewModel : BaseViewModel;
         Task RemoveLastFromBackStackAsync();  
         Task RemoveBackStackAsync();
     }

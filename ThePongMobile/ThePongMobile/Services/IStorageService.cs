@@ -2,9 +2,11 @@ using ThePongMobile.Models;
 
 namespace ThePongMobile.Services
 {
-    public interface IStorageService
+    public interface IStorageService<T> where T : class
     {
-        void GetConfiguration();
-        void SetConfiguration(ConnectionConfig config);
+        T GetConfiguration();
+        void SetConfiguration(T config);
+        void ClearConfiguration();
+        bool IsSetup();
     }
 }
