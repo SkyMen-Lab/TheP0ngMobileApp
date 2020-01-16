@@ -36,18 +36,15 @@ namespace ThePongMobile.Services
 
         public int SendSchoolCode(string server, int port, string schoolCode)
         {
-            TcpClient client = new TcpClient(server, port);
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(server), port);
+            socket.Connect(endPoint);
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(schoolCode);
-            NetworkStream stream = client.GetStream();
-            stream.Write(schoolCodeBytes, 0, schoolCodeBytes.Length);
+            socket.Send(schoolCodeBytes);
             byte[] tcpResponse = new byte[1];
-            stream.Read(tcpResponse, 0, 1);
-            //Sends 1 if successful handshake and 0 if unsuccessful;
-            //Don't know if a certain message as a response would be better?
-            int response = tcpResponse[0];
-            stream.Close();
-            client.Close();
-            return response;
+            socket.Receive(tcpResponse);
+            socket.Close();
+            return tcpResponse[0];
         }
     }
 }
