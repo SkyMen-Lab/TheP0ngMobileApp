@@ -60,7 +60,7 @@ namespace ThePongMobile.ViewModels
             //10.0.2.2 is so that this can work on emulator device.
             string serverIP = "10.0.2.2";
 
-            int response = _networkService.SendSchoolCode(serverIP, port, SchoolCode);
+            int response = _networkService.MakeHandshake(serverIP, port, SchoolCode);
             if (response == 1)
             {
                 _isEntryCodeCompleted = true;

@@ -33,7 +33,7 @@ namespace ThePongMobile.Services
             return config;
         }
 
-        public int SendSchoolCode(string server, int port, string schoolCode)
+        public int MakeHandshake(string server, int port, string schoolCode)
         {
             throw new System.NotImplementedException();
         }

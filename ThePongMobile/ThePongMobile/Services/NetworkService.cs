@@ -34,7 +34,7 @@ namespace ThePongMobile.Services
             throw new NotImplementedException();
         }
 
-        public int SendSchoolCode(string server, int port, string schoolCode)
+        public int MakeHandshake(string server, int port, string schoolCode)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(server), port);
