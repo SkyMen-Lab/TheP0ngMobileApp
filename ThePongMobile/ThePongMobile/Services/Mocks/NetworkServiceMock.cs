@@ -39,5 +39,10 @@ namespace ThePongMobile.Services.Mocks
             SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
             return school;
         }
+
+        public int MakeHandshake(string server, int port, string schoolCode)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

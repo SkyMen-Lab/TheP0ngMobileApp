@@ -29,7 +29,7 @@ namespace ThePongMobile.ViewModels.Base
             }
             else
             {
-                throw new NotImplementedException();
+                _container.Register<INetworkService, NetworkService>();
             }
         }
 
