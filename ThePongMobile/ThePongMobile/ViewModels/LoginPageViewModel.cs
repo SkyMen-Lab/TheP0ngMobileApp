@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using ThePongMobile.Models;
 using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
@@ -55,11 +56,14 @@ namespace ThePongMobile.ViewModels
         }
         private void EnteredLoginEntry()
         {
-            //TODO: set connection port + Server IP:
-            int port = 4545;
-            //10.0.2.2 is so that this can work on emulator device.
-            string serverIP = "10.0.2.2";
-
+            ConnectionConfig config = new ConnectionConfig();
+            int port = config.Port;
+            string serverIP = config.Ip;
+            //================================================================//
+            //Delete this once merged with setting connectionConfig + storage;
+            port = 4545;
+            serverIP = "10.0.2.2";
+            //================================================================//
             int response = _networkService.MakeHandshake(serverIP, port, SchoolCode);
             if (response == 1)
             {
