@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Input;
 using ThePongMobile.Models;
 using ThePongMobile.Services;
+using ThePongMobile.ViewModels.Base;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 

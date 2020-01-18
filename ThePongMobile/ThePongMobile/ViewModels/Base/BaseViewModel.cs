@@ -2,9 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ThePongMobile.Services;
 
-namespace ThePongMobile.ViewModels
+namespace ThePongMobile.ViewModels.Base
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

@@ -9,6 +9,7 @@ using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 using System.Reflection;
+using ThePongMobile.ViewModels.Base;
 
 namespace ThePongMobile.ViewModels
 {
@@ -18,13 +19,15 @@ namespace ThePongMobile.ViewModels
         private bool _isEntryCodeCompleted = false;
         private bool _hasError;
         private string _schoolCode;
-        private string ConfigCode;
+        private SchoolData _schoolData;
         private INavigationService _navigationService;
         private INetworkService _networkService;
+        private IStorageService<ConnectionConfig> _storageService;
         
         public override Type PageType => typeof(SetupPage);
         public ICommand EntryCompletedCommand { get; private set; }
         public ICommand ContinueCommand { get; private set; }
+        
 
         public bool HasError 
         {
@@ -38,10 +41,12 @@ namespace ThePongMobile.ViewModels
             set => SetValue(ref _schoolCode, value);
         }
         
-        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService)
+        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService,
+            IStorageService<ConnectionConfig> storageService)
         {
             _navigationService = navigationService;
             _networkService = networkService;
+            _storageService = storageService;
             EntryCompletedCommand = new Command(EntryCodeCompleted);
             ContinueCommand = new Command(ContinueButtonPressed);
 
@@ -58,14 +63,19 @@ namespace ThePongMobile.ViewModels
         private async void ContinueButtonPressed()
         {
             if (_isEntryCodeCompleted)
+            {
+                _storageService.SetConfiguration(_schoolData.Config);
                 await _navigationService.NavigateToAsync<LoginPageViewModel>();
+            }
             else if (!_isEntryCodeCompleted)
                 HasError = true;
         }
 
         private void EntryCodeCompleted()
         {
-            if (ConfigCode == SchoolCode)
+            _schoolData = await _networkService.GetSchoolDataAsync(SchoolCode);
+            
+            if (_schoolData.Code == SchoolCode)
             {
                 _isEntryCodeCompleted = true;
                 HasError = false;

@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Input;
 using ThePongMobile.Services;
+using ThePongMobile.ViewModels.Base;
 using Xamarin.Forms;
 
 namespace ThePongMobile.ViewModels

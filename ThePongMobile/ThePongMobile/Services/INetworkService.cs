@@ -8,7 +8,7 @@ namespace ThePongMobile.Services
         void SendMessage(int direction);
         int MakeHandshake(string server, int port, string schoolCode);
         int ReceiveScore();
-        Task<ConfigData> GetConfigDataAsync();
+        Task<SchoolData> GetSchoolDataAsync(string code);
 
     }
 }

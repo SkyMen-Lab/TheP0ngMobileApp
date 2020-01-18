@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using ThePongMobile.Models;
 using ThePongMobile.Services;
 using ThePongMobile.ViewModels;
 using ThePongMobile.ViewModels.Base;
@@ -15,9 +16,11 @@ namespace ThePongMobile.Services
     public class NavigationService : INavigationService
     {
         private readonly IViewLocatorService _viewLocatorService;
-        public NavigationService(IViewLocatorService viewLocatorService)
+        private readonly IStorageService<ConnectionConfig> _storageService;
+        public NavigationService(IViewLocatorService viewLocatorService, IStorageService<ConnectionConfig> storageService)
         {
             _viewLocatorService = viewLocatorService;
+            _storageService = storageService;
         }
         
         public async Task PreviousPage() 
@@ -27,7 +30,10 @@ namespace ThePongMobile.Services
 
         public async Task InitAsync()
         {
-            await NavigateToAsync<SetupPageViewModel>();
+            if (!_storageService.IsSetup())
+                await NavigateToAsync<SetupPageViewModel>();
+            else
+                await NavigateToAsync<LoginPageViewModel>();
         }
 
         public async Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel
