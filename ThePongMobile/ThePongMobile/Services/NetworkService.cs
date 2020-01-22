@@ -14,19 +14,22 @@ namespace ThePongMobile.Services
 {
     public class NetworkService : INetworkService
     {
+        //TODO: remove use NetworkServiceMock
         private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
-
-        public async Task<ConfigData> GetConfigDataAsync()
-        {
-            HttpClient _client = new HttpClient();
-            string rawJson = await _client.GetStringAsync(URL);
-            ConfigData config = JsonConvert.DeserializeObject<ConfigData>(rawJson);
-            return config;
-        }
 
         public int ReceiveScore()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<SchoolData> GetSchoolDataAsync(string code)
+        {
+            HttpClient _client = new HttpClient();
+            //TODO: replace with the domain API
+            string rawJson = await _client.GetStringAsync(URL);
+            SchoolData config = JsonConvert.DeserializeObject<SchoolData>(rawJson);
+            //TODO: error checking return null if the code doesn't match any team
+            return config;
         }
 
         public void SendMessage(int direction)
@@ -34,17 +37,18 @@ namespace ThePongMobile.Services
             throw new NotImplementedException();
         }
 
-        public int MakeHandshake(string server, int port, string schoolCode)
+        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(server), port);
+            //TODO: exception handling
             socket.Connect(endPoint);
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(schoolCode);
             socket.Send(schoolCodeBytes);
             byte[] tcpResponse = new byte[1];
             socket.Receive(tcpResponse);
             socket.Close();
-            return tcpResponse[0];
+            return Task.FromResult<int>(tcpResponse[0]);
         }
     }
 }

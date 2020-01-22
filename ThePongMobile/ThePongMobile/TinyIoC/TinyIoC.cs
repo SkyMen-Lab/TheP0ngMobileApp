@@ -909,7 +909,7 @@ namespace TinyIoC
     }
 #endregion
 
-#region Public Setup / Settings Classes
+#region Public Setup / SettingsModel Classes
     /// <summary>
     /// Name/Value pairs for specifying "user" parameters when resolving
     /// </summary>

@@ -6,7 +6,7 @@ namespace ThePongMobile.Services
     public interface INetworkService
     {
         void SendMessage(int direction);
-        int MakeHandshake(string server, int port, string schoolCode);
+        Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode);
         int ReceiveScore();
         Task<SchoolData> GetSchoolDataAsync(string code);
 

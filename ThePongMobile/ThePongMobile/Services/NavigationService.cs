@@ -16,8 +16,8 @@ namespace ThePongMobile.Services
     public class NavigationService : INavigationService
     {
         private readonly IViewLocatorService _viewLocatorService;
-        private readonly IStorageService<ConnectionConfig> _storageService;
-        public NavigationService(IViewLocatorService viewLocatorService, IStorageService<ConnectionConfig> storageService)
+        private readonly IStorageService<SettingsModel> _storageService;
+        public NavigationService(IViewLocatorService viewLocatorService, IStorageService<SettingsModel> storageService)
         {
             _viewLocatorService = viewLocatorService;
             _storageService = storageService;

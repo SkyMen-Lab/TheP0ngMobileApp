@@ -25,8 +25,7 @@
             <ui:MaterialTextField Placeholder="School Code" 
                                   ErrorText="Invalid School Code Entered"
                                   HasError="{Binding HasError, Mode=TwoWay}"
-                                  Text="{Binding SchoolCode, Mode=TwoWay}" 
-                                  ReturnCommand="{Binding EntryCompletedCommand}"/>
+                                  Text="{Binding SchoolCode, Mode=TwoWay}" />
             <ui:MaterialButton Text="Continue"
                                Command="{Binding ContinueCommand}"/>
         </StackLayout>

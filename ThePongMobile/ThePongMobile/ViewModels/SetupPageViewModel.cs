@@ -19,13 +19,11 @@ namespace ThePongMobile.ViewModels
         private bool _isEntryCodeCompleted = false;
         private bool _hasError;
         private string _schoolCode;
-        private SchoolData _schoolData;
         private INavigationService _navigationService;
         private INetworkService _networkService;
-        private IStorageService<ConnectionConfig> _storageService;
+        private IStorageService<SettingsModel> _storageService;
         
         public override Type PageType => typeof(SetupPage);
-        public ICommand EntryCompletedCommand { get; private set; }
         public ICommand ContinueCommand { get; private set; }
         
 
@@ -42,46 +40,33 @@ namespace ThePongMobile.ViewModels
         }
         
         public SetupPageViewModel(INavigationService navigationService, INetworkService networkService,
-            IStorageService<ConnectionConfig> storageService)
+            IStorageService<SettingsModel> storageService)
         {
             _navigationService = navigationService;
             _networkService = networkService;
             _storageService = storageService;
-            EntryCompletedCommand = new Command(EntryCodeCompleted);
             ContinueCommand = new Command(ContinueButtonPressed);
-
-            GetConfigDataAsync();
         }
-
-        private async void GetConfigDataAsync()
-        {
-            //Added a function here otherwise the user could enter the login details and click continue before the API call had been made, now much more unlikely
-            var config =  await _networkService.GetConfigDataAsync();
-            ConfigCode = config.Code;
-        }
+        
 
         private async void ContinueButtonPressed()
         {
-            if (_isEntryCodeCompleted)
+            var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
+            if (schoolData != null && schoolData.Config != null)
             {
-                _storageService.SetConfiguration(_schoolData.Config);
+                var settings = new SettingsModel()
+                {
+                    SchoolName = schoolData.Name,
+                    SchoolCode = SchoolCode,
+                    ConnectionType = schoolData.Config.ConnectionType,
+                    IP = schoolData.Config.IP,
+                    Port = schoolData.Config.Port
+                };
+                _storageService.SetConfiguration(settings);
                 await _navigationService.NavigateToAsync<LoginPageViewModel>();
             }
             else if (!_isEntryCodeCompleted)
                 HasError = true;
-        }
-
-        private void EntryCodeCompleted()
-        {
-            _schoolData = await _networkService.GetSchoolDataAsync(SchoolCode);
-            
-            if (_schoolData.Code == SchoolCode)
-            {
-                _isEntryCodeCompleted = true;
-                HasError = false;
-            }
-            else
-              HasError = true;
         }
     }
 }

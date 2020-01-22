@@ -25,9 +25,7 @@
                                       ErrorText="Invalid School Code Entered"
                                       InputType="Default" 
                                       HasError="{Binding HasError, Mode=TwoWay}"
-                                      Text="{Binding SchoolCode, Mode=TwoWay}" 
-
-                                      ReturnCommand="{Binding CompletedLoginCommand}"/>
+                                      Text="{Binding GameCode, Mode=Default}" />
         <ui:MaterialButton Text="Play" Command="{Binding PlayButtonCommand}"/>
     </StackLayout>
 </ContentPage>

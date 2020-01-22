@@ -15,66 +15,55 @@ namespace ThePongMobile.ViewModels
         public override Type PageType => typeof(LoginPage);
 
         public ICommand PlayButtonCommand { get; private set; }
-        public ICommand CompletedLoginCommand { get; private set; }
 
         private INavigationService _navigationService;
         private INetworkService _networkService;
-
-        private bool _isEntryCodeCompleted = false;
+        private IStorageService<SettingsModel> _storageService;
+        
         private bool _hasError;
-        private string _schoolCode;
+        private string _gameCode;
         public bool HasError 
         {
             get => _hasError; 
             set => SetValue(ref _hasError, value);  
         }
 
-        public string SchoolCode
+        public string GameCode
         {
-            get => _schoolCode;
-            set => SetValue(ref _schoolCode, value);
+            get => _gameCode;
+            set => SetValue(ref _gameCode, value);
         }
 
-        public LoginPageViewModel(INavigationService navigationService, INetworkService networkService)
+        public LoginPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)
         {
+            _storageService = storageService;
             _navigationService = navigationService;
             _networkService = networkService;
             PlayButtonCommand = new Command(PlayButtonPressed);
-            CompletedLoginCommand = new Command(EnteredLoginEntry);
         }
         
         private async void PlayButtonPressed()
         {
             //Checks login details here for navigation;
-
-            if (_isEntryCodeCompleted)
-                await _navigationService.NavigateToAsync<MainPageViewModel>();
-            else
-            {
-                HasError = true;
-                _isEntryCodeCompleted = false;
-            }
-        }
-        private void EnteredLoginEntry()
-        {
+            
             ConnectionConfig config = new ConnectionConfig();
             int port = config.Port;
-            string serverIP = config.Ip;
+            string serverIP = config.IP;
+
+            var data = _storageService.GetConfiguration();
             //================================================================//
             //Delete this once merged with setting connectionConfig + storage;
             port = 4545;
             serverIP = "10.0.2.2";
             //================================================================//
-            int response = _networkService.MakeHandshake(serverIP, port, SchoolCode);
+            int response = await _networkService.MakeHandshake(serverIP, port, data.SchoolCode, _gameCode);
+
             if (response == 1)
-            {
-                _isEntryCodeCompleted = true;
-            }
+                await _navigationService.NavigateToAsync<MainPageViewModel>();
             else
             {
-                _isEntryCodeCompleted = false;
                 HasError = true;
             }
         }
-     }
+    }
  }
