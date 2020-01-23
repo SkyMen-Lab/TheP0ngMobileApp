@@ -30,7 +30,6 @@ namespace ThePongMobile.ViewModels
         private void MoveCommand(int direction)
         {
             _networkService.SendMessage(direction);
-            Score = _networkService.ReceiveScore();
         }
     }
 }

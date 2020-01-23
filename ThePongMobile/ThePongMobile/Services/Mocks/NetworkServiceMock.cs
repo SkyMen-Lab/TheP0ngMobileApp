@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
@@ -15,24 +16,56 @@ namespace ThePongMobile.Services.Mocks
     {
         private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
         private int _score = 1;
+        byte[] directionBytes = new byte[1];
+        private UdpClient udpClient;
+        private IPEndPoint endPoint;
+
+
         public void SendMessage(int direction)
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            socket.SendTo(Encoding.ASCII.GetBytes(direction.ToString()), new IPEndPoint(IPAddress.Any, 3322));
+            directionBytes[0] = (byte)direction;
+            try
+            {
+                udpClient.Send(directionBytes, 1, endPoint);
+            }
+            catch
+            {
+
+            }
         }
 
         public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
         {
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(server), port);
-            //TODO: exception handling
-            socket.Connect(endPoint);
-            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(schoolCode);
-            socket.Send(schoolCodeBytes);
-            byte[] tcpResponse = new byte[1];
-            socket.Receive(tcpResponse);
-            socket.Close();
-            return Task.FromResult<int>(tcpResponse[0]);
+            var sendingModel = new HandShakeJsonModel()
+            {
+                GameCode = gameCode,
+                SchoolCode = schoolCode
+            };
+            string JsonToSend = JsonConvert.SerializeObject(sendingModel);
+            byte[] tcpResponse = new byte[32];
+            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(JsonToSend);
+            try
+            {
+                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+                udpClient = new UdpClient();
+                endPoint = new IPEndPoint(IPAddress.Any, port);
+
+                socket.Connect(endPoint);
+                socket.Send(schoolCodeBytes);
+                socket.Receive(tcpResponse);
+                socket.Close();
+            }
+            catch (Exception e)
+            {
+                return Task.FromResult(404);
+            }
+
+            if (int.TryParse(Encoding.ASCII.GetString(tcpResponse), out int httpResponse))
+            {
+                return Task.FromResult<int>(httpResponse);
+            }
+
+            return Task.FromResult(404);
         }
 
         public int ReceiveScore()

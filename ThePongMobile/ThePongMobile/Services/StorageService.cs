@@ -22,8 +22,7 @@ namespace ThePongMobile.Services
             if (schoolName == SchoolNameDefault) return null;
             int connectionType = Preferences.Get("c_type", ConnectionTypeDefault);
             if (connectionType == -1) return null;
-            
-            
+
             var config = new SettingsModel()
             {
                 SchoolName = schoolName, 
