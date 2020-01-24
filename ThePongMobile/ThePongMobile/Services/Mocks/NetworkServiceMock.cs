@@ -17,8 +17,8 @@ namespace ThePongMobile.Services.Mocks
         private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
         private int _score = 1;
         byte[] directionBytes = new byte[1];
-        private UdpClient udpClient;
-        private IPEndPoint endPoint;
+        private static UdpClient _udpClient;
+        private static IPEndPoint _endPoint;
 
 
         public void SendMessage(int direction)
@@ -26,14 +26,13 @@ namespace ThePongMobile.Services.Mocks
             directionBytes[0] = (byte)direction;
             try
             {
-                udpClient.Send(directionBytes, 1, endPoint);
+                _udpClient.Send(directionBytes, 1, _endPoint);
             }
             catch
             {
 
             }
         }
-
         public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
         {
             var sendingModel = new HandShakeJsonModel()
@@ -42,24 +41,25 @@ namespace ThePongMobile.Services.Mocks
                 SchoolCode = schoolCode
             };
             string JsonToSend = JsonConvert.SerializeObject(sendingModel);
-            byte[] tcpResponse = new byte[32];
+            byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(JsonToSend);
             try
             {
-                Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                udpClient = new UdpClient();
-                endPoint = new IPEndPoint(IPAddress.Any, port);
+                _udpClient = new UdpClient();
+                _endPoint = new IPEndPoint(IPAddress.Parse(server), port);
 
-                socket.Connect(endPoint);
-                socket.Send(schoolCodeBytes);
-                socket.Receive(tcpResponse);
-                socket.Close();
+                TcpClient client = new TcpClient(server, port + 1);
+                NetworkStream ns = client.GetStream();
+                ns.Write(schoolCodeBytes, 0, schoolCodeBytes.Length);
+                ns.Read(tcpResponse, 0, tcpResponse.Length);
+                ns.Close();
+                client.Close();
             }
+            
             catch (Exception e)
             {
                 return Task.FromResult(404);
             }
-
             if (int.TryParse(Encoding.ASCII.GetString(tcpResponse), out int httpResponse))
             {
                 return Task.FromResult<int>(httpResponse);

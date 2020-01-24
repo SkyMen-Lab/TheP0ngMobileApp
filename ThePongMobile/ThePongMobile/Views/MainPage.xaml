@@ -33,7 +33,7 @@
                 BackgroundColor="#A0499D">
             <material:MaterialButton.CommandParameter>
                 <x:Int32>
-                    -1
+                    0
                 </x:Int32>
             </material:MaterialButton.CommandParameter>
         </material:MaterialButton>

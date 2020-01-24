@@ -44,13 +44,9 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
-            //Checks login details here for navigation;
-            ConnectionConfig config = new ConnectionConfig();
-            int routerPort = config.Port;
-            string routerIp = config.IP;
             var data = _storageService.GetConfiguration();
 
-            int response = await _networkService.MakeHandshake(routerIp, routerPort, data.SchoolCode, _gameCode);
+            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode);
             
             if (response == 200)
                 await _navigationService.NavigateToAsync<MainPageViewModel>();
