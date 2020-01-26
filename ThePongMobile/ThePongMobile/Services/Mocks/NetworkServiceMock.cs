@@ -43,6 +43,9 @@ namespace ThePongMobile.Services.Mocks
             string JsonToSend = JsonConvert.SerializeObject(sendingModel);
             byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(JsonToSend);
+
+            server = "127.0.0.1";
+            
             try
             {
                 _udpClient = new UdpClient();
@@ -80,8 +83,8 @@ namespace ThePongMobile.Services.Mocks
             //TODO: replace with domain
             string newUrl;
             if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5000/api/team/code/" + code;
-            else newUrl = "http://localhost:5000/api/team/code/" + code;
+                 newUrl = "http://10.0.2.2:5007/api/team/code/" + code;
+            else newUrl = "http://localhost:5007/api/team/code/" + code;
             string rawJson = await client.GetStringAsync(newUrl);
             SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
             return school;
