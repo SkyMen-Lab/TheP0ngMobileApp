@@ -14,16 +14,19 @@ namespace ThePongMobile.Services
         {
             string ip = Preferences.Get("ip", IpDefault);
             if (string.Equals(ip, IpDefault)) return null;
+            
             int port = Preferences.Get("port", PortDefault);
             if (port == PortDefault) return null;
-            string schoolCode = Preferences.Get("name", SchoolCodeDefault);
-            if (schoolCode == SchoolCodeDefault) return null;
-            string schoolName = Preferences.Get("code", SchoolNameDefault);
-            if (schoolName == SchoolNameDefault) return null;
+            
+            string schoolName = Preferences.Get("name", SchoolCodeDefault);
+            if (schoolName == SchoolCodeDefault) return null;
+            
+            string schoolCode = Preferences.Get("code", SchoolNameDefault);
+            if (schoolCode == SchoolNameDefault) return null;
+            
             int connectionType = Preferences.Get("c_type", ConnectionTypeDefault);
             if (connectionType == -1) return null;
-            
-            
+
             var config = new SettingsModel()
             {
                 SchoolName = schoolName, 

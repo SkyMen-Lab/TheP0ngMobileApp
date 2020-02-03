@@ -16,7 +16,6 @@ namespace ThePongMobile.ViewModels
     public class SetupPageViewModel : BaseViewModel
     {
 
-        private bool _isEntryCodeCompleted = false;
         private bool _hasError;
         private string _schoolCode;
         private INavigationService _navigationService;
@@ -65,7 +64,7 @@ namespace ThePongMobile.ViewModels
                 _storageService.SetConfiguration(settings);
                 await _navigationService.NavigateToAsync<LoginPageViewModel>();
             }
-            else if (!_isEntryCodeCompleted)
+            else 
                 HasError = true;
         }
     }
