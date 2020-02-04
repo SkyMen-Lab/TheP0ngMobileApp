@@ -16,7 +16,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Images\Cat.png" />
+      <EmbeddedResource Include="Images\Cat.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
       <EmbeddedResource Include="Images\downArrow.png" />
       <EmbeddedResource Include="Images\upArrow.png" />
     </ItemGroup>

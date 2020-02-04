@@ -8,24 +8,36 @@
              xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.LoginPage"
-             NavigationPage.HasBackButton="false">
-    <StackLayout VerticalOptions="CenterAndExpand" 
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="50, 50, 50, 50">
-            <ic:CircleImage 
-                    HeightRequest="250"
-                    WidthRequest="250"
-                    HorizontalOptions="Center" 
-                    Aspect="AspectFill"
-                    Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"/>
-            <Label Text="Enter in the Game Session Code" FontSize="Medium"
-                       FontAttributes="Bold" HorizontalTextAlignment="Center"
-                       Padding="0, 10" TextColor="#212121"/>
-            <ui:MaterialTextField Placeholder="Game Code"
-                                      ErrorText="Invalid School Code Entered"
-                                      InputType="Default" 
-                                      HasError="{Binding HasError, Mode=TwoWay}"
-                                      Text="{Binding GameCode, Mode=Default}" />
-        <ui:MaterialButton Text="Play" Command="{Binding PlayButtonCommand}"/>
-    </StackLayout>
+             NavigationPage.HasBackButton="False"
+             ui:MaterialNavigationPage.AppBarColor="#083936">
+    <AbsoluteLayout BackgroundColor="#073047">
+        <ic:CircleImage 
+            Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
+            AbsoluteLayout.LayoutBounds="0.5, 0.0, 0.7, 0.7"
+            AbsoluteLayout.LayoutFlags="All"/>
+        <Label Text="Enter in your Game Code here" FontSize="Medium"
+               FontAttributes="Bold" HorizontalTextAlignment="Center"
+               Padding="0, 10" TextColor="white"
+               AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.9, 0.1"
+               AbsoluteLayout.LayoutFlags="All"/>
+        <ui:MaterialTextField Placeholder="Game Code"
+                              ErrorText="Invalid Game Code Entered"
+                              HasError="{Binding HasError, Mode=TwoWay}"
+                              Text="{Binding GameCode, Mode=Default}"
+                              AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.65, 0.1"
+                              AbsoluteLayout.LayoutFlags="All"/>
+        <ui:MaterialButton Text="Continue"
+                           Command="{Binding PlayButtonCommand}"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.85, 0.65, 0.1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           BackgroundColor="#083936"/>
+        <ui:MaterialButton Text="Reset School Code"
+                           Command="{Binding ResetButtonCommand}"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.99, 0.65, 0.1"
+                           AbsoluteLayout.LayoutFlags="All"
+                           BackgroundColor="Transparent"
+                           ButtonType="Text"
+                           TextColor="White"
+                           />
+    </AbsoluteLayout>
 </ContentPage>
