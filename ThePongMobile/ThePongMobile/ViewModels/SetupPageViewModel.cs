@@ -64,7 +64,7 @@ namespace ThePongMobile.ViewModels
                 _storageService.SetConfiguration(settings);
                 await _navigationService.NavigateToAsync<LoginPageViewModel>();
             }
-            else 
+            else
                 HasError = true;
         }
     }

@@ -10,7 +10,7 @@ using ImageCircle.Forms.Plugin.Droid;
 
 namespace ThePongMobile.Android
 {
-    [Activity(Label = "ThePongMobile", Icon = "@Resources/drawable/icon512", Theme = "@style/MainTheme", MainLauncher = true,
+    [Activity(Label = "ThePongMobile", Icon = "@mipmap/icon" , Theme = "@style/MainTheme", MainLauncher = true,
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {

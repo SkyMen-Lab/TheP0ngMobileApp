@@ -52,6 +52,7 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
+
             var data = _storageService.GetConfiguration();
 
             int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode);
