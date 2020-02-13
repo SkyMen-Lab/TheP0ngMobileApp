@@ -10,12 +10,14 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <None Remove="Images\backIcon.png" />
       <None Remove="Images\Cat.png" />
       <None Remove="Images\downArrow.png" />
       <None Remove="Images\upArrow.png" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Images\backIcon.png" />
       <EmbeddedResource Include="Images\Cat.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>

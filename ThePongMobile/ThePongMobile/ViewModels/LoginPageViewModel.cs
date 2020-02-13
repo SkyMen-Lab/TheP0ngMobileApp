@@ -52,10 +52,10 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
-
             var data = _storageService.GetConfiguration();
+            var isJoining = true;
 
-            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode);
+            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode, isJoining);
 
             if (response == 200)
                 await _navigationService.NavigateToAsync<MainPageViewModel>();

@@ -38,8 +38,7 @@ namespace ThePongMobile.ViewModels
             set => SetValue(ref _schoolCode, value);
         }
         
-        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService,
-            IStorageService<SettingsModel> storageService)
+        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)
         {
             _navigationService = navigationService;
             _networkService = networkService;

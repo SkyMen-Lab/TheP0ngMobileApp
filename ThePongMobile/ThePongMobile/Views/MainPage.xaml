@@ -4,8 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local1="clr-namespace:ThePongMobile.MarkUpExtentions"
              x:Class="ThePongMobile.MainPage"
-             material:MaterialNavigationPage.AppBarColor="#33264F">
-
+             material:MaterialNavigationPage.AppBarColor="#33264F"
+             NavigationPage.HasBackButton="False">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            IconImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.backIcon.png}"
+            Command="{Binding Back}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <Grid ColumnSpacing="0" RowSpacing="0" BackgroundColor="#33264F">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>

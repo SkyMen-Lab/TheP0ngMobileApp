@@ -37,7 +37,6 @@
                            AbsoluteLayout.LayoutFlags="All"
                            BackgroundColor="Transparent"
                            ButtonType="Text"
-                           TextColor="White"
-                           />
+                           TextColor="White"/>
     </AbsoluteLayout>
 </ContentPage>

@@ -33,12 +33,14 @@ namespace ThePongMobile.Services.Mocks
 
             }
         }
-        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
+
+        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
         {
             var sendingModel = new HandShakeJsonModel()
             {
                 GameCode = gameCode,
-                SchoolCode = schoolCode
+                SchoolCode = schoolCode,
+                UserJoined = isJoining
             };
             string JsonToSend = JsonConvert.SerializeObject(sendingModel);
             byte[] tcpResponse = new byte[64];

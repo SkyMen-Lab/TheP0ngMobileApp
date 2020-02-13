@@ -12,5 +12,8 @@ namespace ThePongMobile.Models
 
         [JsonProperty("GameCode")]
         public string GameCode { get; set; }
+
+        [JsonProperty("UserJoined")]
+        public bool UserJoined { get; set; }
     }
 }
