@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
@@ -40,14 +41,24 @@ namespace ThePongMobile.Services.Mocks
             {
                 GameCode = gameCode,
                 SchoolCode = schoolCode,
-                UserJoined = isJoining
             };
-            string JsonToSend = JsonConvert.SerializeObject(sendingModel);
-            byte[] tcpResponse = new byte[64];
-            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(JsonToSend);
+            string jsonToSend = string.Empty;
+            if (isJoining)
+            {
+                jsonToSend += "0";
+                jsonToSend +=  JsonConvert.SerializeObject(sendingModel);
+            }
+            else
+            {
+                jsonToSend += "1";
+                jsonToSend +=  JsonConvert.SerializeObject(sendingModel);
+            }
 
-            server = "127.0.0.1";
-            
+            byte[] tcpResponse = new byte[64];
+            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
+
+            server = "10.0.2.2";
+
             try
             {
                 _udpClient = new UdpClient();
@@ -60,7 +71,6 @@ namespace ThePongMobile.Services.Mocks
                 ns.Close();
                 client.Close();
             }
-            
             catch (Exception e)
             {
                 return Task.FromResult(404);

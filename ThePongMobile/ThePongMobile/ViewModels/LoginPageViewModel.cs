@@ -56,14 +56,12 @@ namespace ThePongMobile.ViewModels
             var isJoining = true;
 
             int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode, isJoining);
-
             if (response == 200)
                 await _navigationService.NavigateToAsync<MainPageViewModel>();
             else
             {
                 HasError = true;
             }
-
         }
     }
  }
