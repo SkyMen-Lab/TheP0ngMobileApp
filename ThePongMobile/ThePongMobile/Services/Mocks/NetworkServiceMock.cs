@@ -41,19 +41,9 @@ namespace ThePongMobile.Services.Mocks
             {
                 GameCode = gameCode,
                 SchoolCode = schoolCode,
+                IsJoining = isJoining
             };
-            string jsonToSend = string.Empty;
-            if (isJoining)
-            {
-                jsonToSend += "0";
-                jsonToSend +=  JsonConvert.SerializeObject(sendingModel);
-            }
-            else
-            {
-                jsonToSend += "1";
-                jsonToSend +=  JsonConvert.SerializeObject(sendingModel);
-            }
-
+            string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
             byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
 

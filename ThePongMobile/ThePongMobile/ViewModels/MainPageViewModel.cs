@@ -41,18 +41,19 @@ namespace ThePongMobile.ViewModels
 
         public async void BackCommand()
         {
+            //var isJoining = false;
+            //var GameCodeMessage = "is Leaving";
+            //int response = await _networkService.MakeHandshake("", 3322, "NI46Q", GameCodeMessage, isJoining);
+            //if (response == 200)
+            //    await _navigationService.PreviousPage();
             var data = _storageService.GetConfiguration();
             var isJoining = false;
-            var userLeaving = "Leaving Game";
-            try
-            {
-                await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, userLeaving, isJoining);
-            }
-            catch
-            {
+            var GameCodeMessage = "is Leaving";
+            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, GameCodeMessage, isJoining);
+            if (response == 200)
+                await _navigationService.PreviousPage();
 
-            }
-            await _navigationService.PreviousPage();
+
         }
     }
 }

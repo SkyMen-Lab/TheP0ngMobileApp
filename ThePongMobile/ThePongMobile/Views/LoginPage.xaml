@@ -33,7 +33,7 @@
                            BackgroundColor="#083936"/>
         <ui:MaterialButton Text="Reset School Code"
                            Command="{Binding ResetButtonCommand}"
-                           AbsoluteLayout.LayoutBounds="0.5, 0.99, 0.65, 0.1"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.99, 0.55, 0.1"
                            AbsoluteLayout.LayoutFlags="All"
                            BackgroundColor="Transparent"
                            ButtonType="Text"

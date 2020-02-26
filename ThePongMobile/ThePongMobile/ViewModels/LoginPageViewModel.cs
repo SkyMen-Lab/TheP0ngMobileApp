@@ -52,6 +52,13 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
+            //var isJoining = true;
+            //int response = await _networkService.MakeHandshake("127.0.0.1", 3322, "NI46Q", _gameCode, isJoining);
+            //if(response == 1)
+            //    await _navigationService.NavigateToAsync<MainPageViewModel>();
+            //else
+            //    HasError = true;
+
             var data = _storageService.GetConfiguration();
             var isJoining = true;
 
