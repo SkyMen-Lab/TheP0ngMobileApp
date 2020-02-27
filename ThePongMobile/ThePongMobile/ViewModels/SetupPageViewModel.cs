@@ -49,6 +49,7 @@ namespace ThePongMobile.ViewModels
 
         private async void ContinueButtonPressed()
         {
+
             var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
             if (schoolData != null && schoolData.Config != null)
             {

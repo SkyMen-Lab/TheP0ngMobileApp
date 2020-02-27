@@ -20,6 +20,7 @@ namespace ThePongMobile.ViewModels
         private INavigationService _navigationService;
         private INetworkService _networkService;
         private IStorageService<SettingsModel> _storageService;
+
         
         private bool _hasError;
         private string _gameCode;
@@ -46,8 +47,12 @@ namespace ThePongMobile.ViewModels
 
         private async void ResetButtonPressed()
         {
-            _storageService.ClearConfiguration();
-            await _navigationService.NavigateToAsync<SetupPageViewModel>();
+            bool response = await _navigationService.DisplayAlert("Reset School Code", "Are you sure you want to reset your school code?", "OK", "Cancel");
+            if(response)
+            {
+                _storageService.ClearConfiguration();
+                await _navigationService.NavigateToAsync<SetupPageViewModel>();
+            }
         }
         
         private async void PlayButtonPressed()
