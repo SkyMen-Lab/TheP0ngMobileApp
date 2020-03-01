@@ -17,10 +17,6 @@ namespace ThePongMobile
         }
         protected override bool OnBackButtonPressed()
         {
-            //TODO: return to Login Screen
-
-            //It might be better to leave it disabled because it is easy to accidently press during the game
-            //and rejoining may be frustrating for users.
             return true;
         }
     }

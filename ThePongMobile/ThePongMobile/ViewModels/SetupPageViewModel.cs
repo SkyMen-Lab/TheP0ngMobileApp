@@ -49,23 +49,23 @@ namespace ThePongMobile.ViewModels
 
         private async void ContinueButtonPressed()
         {
-
-            var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
-            if (schoolData != null && schoolData.Config != null)
-            {
-                var settings = new SettingsModel()
-                {
-                    SchoolName = schoolData.Name,
-                    SchoolCode = SchoolCode,
-                    ConnectionType = schoolData.Config.ConnectionType,
-                    IP = schoolData.Config.IP,
-                    Port = schoolData.Config.Port
-                };
-                _storageService.SetConfiguration(settings);
-                await _navigationService.NavigateToAsync<LoginPageViewModel>();
-            }
-            else
-                HasError = true;
+            await _navigationService.NavigateToAsync<LoginPageViewModel>();
+            //var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
+            //if (schoolData != null && schoolData.Config != null)
+            //{
+            //    var settings = new SettingsModel()
+            //    {
+            //        SchoolName = schoolData.Name,
+            //        SchoolCode = SchoolCode,
+            //        ConnectionType = schoolData.Config.ConnectionType,
+            //        IP = schoolData.Config.IP,
+            //        Port = schoolData.Config.Port
+            //    };
+            //    _storageService.SetConfiguration(settings);
+            //    await _navigationService.NavigateToAsync<LoginPageViewModel>();
+            //}
+            //else
+            //    HasError = true;
         }
     }
 }
