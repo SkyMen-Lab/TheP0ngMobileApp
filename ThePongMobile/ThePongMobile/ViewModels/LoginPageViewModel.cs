@@ -14,6 +14,8 @@ namespace ThePongMobile.ViewModels
     {
         public override Type PageType => typeof(LoginPage);
 
+        public static string Gamecode;
+
         public ICommand PlayButtonCommand { get; private set; }
         public ICommand ResetButtonCommand { get; private set; }
 
@@ -62,7 +64,10 @@ namespace ThePongMobile.ViewModels
 
             int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode, isJoining);
             if (response == 200)
+            {
+                Gamecode = _gameCode;
                 await _navigationService.NavigateToAsync<MainPageViewModel>();
+            }
             else
                 HasError = true;
             

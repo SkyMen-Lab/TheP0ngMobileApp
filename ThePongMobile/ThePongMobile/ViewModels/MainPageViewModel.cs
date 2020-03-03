@@ -14,17 +14,20 @@ namespace ThePongMobile.ViewModels
         private INetworkService _networkService;
         private INavigationService _navigationService;
         private IStorageService<SettingsModel> _storageService;
+        private string GameCode;
         public MainPageViewModel(INetworkService networkService, INavigationService navigationService, IStorageService<SettingsModel> storageService)
         {
             _networkService = networkService;
             _navigationService = navigationService;
             _storageService = storageService;
+            GameCode = LoginPageViewModel.Gamecode;
             Move = new Command<int>(MoveCommand);
             Back = new Command(BackCommand);
         }
         
         public ICommand Move { get; set; }
         public ICommand Back { get; set; }
+
 
         private int _score;
 
@@ -46,8 +49,7 @@ namespace ThePongMobile.ViewModels
             {
                 var data = _storageService.GetConfiguration();
                 var isJoining = false;
-                var GameCodeMessage = "is Leaving";
-                int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, GameCodeMessage, isJoining);
+                int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, GameCode, isJoining);
                 if (response == 200)
                     await _navigationService.PreviousPage();
             }
