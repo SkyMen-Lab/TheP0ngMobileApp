@@ -40,7 +40,7 @@ namespace ThePongMobile.Services.Mocks
             var sendingModel = new HandShakeJsonModel()
             {
                 GameCode = gameCode,
-                SchoolCode = schoolCode,
+                SchoolCode = schoolCode.ToUpper(),
                 IsJoining = isJoining
             };
             string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
@@ -80,13 +80,14 @@ namespace ThePongMobile.Services.Mocks
 
         public async Task<SchoolData> GetSchoolDataAsync(string code)
         {
+            string Acode = code.ToUpper();
             HttpClient client = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
             if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5007/api/team/code/" + code;
-            else newUrl = "http://localhost:5007/api/team/code/" + code;
+                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
+            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
             string rawJson = await client.GetStringAsync(newUrl);
             SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
             return school;

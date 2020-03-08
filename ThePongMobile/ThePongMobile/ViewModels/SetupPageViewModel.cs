@@ -9,7 +9,9 @@ using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 using System.Reflection;
+using Xamarin.Essentials;
 using ThePongMobile.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace ThePongMobile.ViewModels
 {
@@ -45,8 +47,6 @@ namespace ThePongMobile.ViewModels
             _storageService = storageService;
             ContinueCommand = new Command(ContinueButtonPressed);
         }
-        
-
         private async void ContinueButtonPressed()
         {
             var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
