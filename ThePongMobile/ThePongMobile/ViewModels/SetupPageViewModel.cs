@@ -37,7 +37,7 @@ namespace ThePongMobile.ViewModels
         public string SchoolCode
         {
             get => _schoolCode;
-            set => SetValue(ref _schoolCode, value);
+            set => SetValue(ref _schoolCode, value?.ToUpper());
         }
         
         public SetupPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)

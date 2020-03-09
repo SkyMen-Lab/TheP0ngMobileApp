@@ -35,7 +35,7 @@ namespace ThePongMobile.ViewModels
         public string GameCode
         {
             get => _gameCode;
-            set => SetValue(ref _gameCode, value);
+            set => SetValue(ref _gameCode, value?.ToUpper());
         }
 
         public LoginPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)
