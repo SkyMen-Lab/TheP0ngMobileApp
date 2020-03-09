@@ -40,14 +40,14 @@ namespace ThePongMobile.Services.Mocks
             var sendingModel = new HandShakeJsonModel()
             {
                 GameCode = gameCode,
-                SchoolCode = schoolCode.ToUpper(),
+                TeamCode = schoolCode.ToUpper(),
                 IsJoining = isJoining
             };
             string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
             byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
 
-            server = "10.0.2.2";
+            server = "127.0.0.1";
 
             try
             {
