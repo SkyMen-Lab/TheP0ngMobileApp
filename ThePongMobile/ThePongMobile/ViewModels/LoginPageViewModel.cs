@@ -14,11 +14,15 @@ namespace ThePongMobile.ViewModels
     {
         public override Type PageType => typeof(LoginPage);
 
+        public static string Gamecode;
+
         public ICommand PlayButtonCommand { get; private set; }
+        public ICommand ResetButtonCommand { get; private set; }
 
         private INavigationService _navigationService;
         private INetworkService _networkService;
         private IStorageService<SettingsModel> _storageService;
+
         
         private bool _hasError;
         private string _gameCode;
@@ -31,7 +35,7 @@ namespace ThePongMobile.ViewModels
         public string GameCode
         {
             get => _gameCode;
-            set => SetValue(ref _gameCode, value);
+            set => SetValue(ref _gameCode, value?.ToUpper());
         }
 
         public LoginPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)
@@ -40,20 +44,33 @@ namespace ThePongMobile.ViewModels
             _navigationService = navigationService;
             _networkService = networkService;
             PlayButtonCommand = new Command(PlayButtonPressed);
+            ResetButtonCommand = new Command(ResetButtonPressed);
+        }
+
+        private async void ResetButtonPressed()
+        {
+            bool response = await _navigationService.DisplayAlert("Reset School Code", "Are you sure you want to reset your school code?", "OK", "Cancel");
+            if(response)
+            {
+                _storageService.ClearConfiguration();
+                await _navigationService.NavigateToAsync<SetupPageViewModel>();
+            }
         }
         
         private async void PlayButtonPressed()
         {
             var data = _storageService.GetConfiguration();
+            var isJoining = true;
 
-            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode);
-            
+            int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, _gameCode, isJoining);
             if (response == 200)
-                await _navigationService.NavigateToAsync<MainPageViewModel>();
-            else
             {
-                HasError = true;
+                Gamecode = _gameCode;
+                await _navigationService.NavigateToAsync<MainPageViewModel>();
             }
+            else
+                HasError = true;
+            
         }
     }
  }

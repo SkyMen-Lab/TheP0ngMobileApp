@@ -8,26 +8,36 @@
              xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.SetupPage"
-             NavigationPage.HasBackButton="False">
+             NavigationPage.HasBackButton="False"
+             ui:MaterialNavigationPage.AppBarColor="#02111B">
     <ContentPage.Content>
-        <StackLayout VerticalOptions="CenterAndExpand" 
-                     HorizontalOptions="CenterAndExpand"
-                     Padding="50, 50, 50, 50">
+        <AbsoluteLayout BackgroundColor="#5D737E">
             <ic:CircleImage 
-                HeightRequest="250"
-                WidthRequest="250"
-                HorizontalOptions="Center" 
-                Aspect="AspectFill"
-                Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"/>
+                        Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
+                        HeightRequest="250"
+                        WidthRequest="250"
+                        Aspect="AspectFill"
+                        AbsoluteLayout.LayoutBounds="0.5, 0.25, 0.8, 0.4"
+                        AbsoluteLayout.LayoutFlags="All"/>
             <Label Text="Enter in your School Code here" FontSize="Medium"
                    FontAttributes="Bold" HorizontalTextAlignment="Center"
-                   Padding="0, 10" TextColor="#212121"/>
+                   Padding="0, 10" TextColor="#FCFCFC"
+                   AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.9, 0.1"
+                   AbsoluteLayout.LayoutFlags="All"/>
             <ui:MaterialTextField Placeholder="School Code" 
+                                  ErrorColor="Red"
+                                  BackgroundColor="#FCFCFC"
                                   ErrorText="Invalid School Code Entered"
                                   HasError="{Binding HasError, Mode=TwoWay}"
-                                  Text="{Binding SchoolCode, Mode=TwoWay}" />
+                                  Text="{Binding SchoolCode, Mode=TwoWay}"
+                                  AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.65, 0.1"
+                                  AbsoluteLayout.LayoutFlags="All"/>
             <ui:MaterialButton Text="Continue"
-                               Command="{Binding ContinueCommand}"/>
-        </StackLayout>
+                               Command="{Binding ContinueCommand}"
+                               AbsoluteLayout.LayoutBounds="0.5, 0.85, 0.65, 0.1"
+                               AbsoluteLayout.LayoutFlags="All"
+                               TextColor="#FCFCFC"
+                               BackgroundColor="#02111B"/>
+        </AbsoluteLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -11,5 +11,9 @@ namespace ThePongMobile.Services
         Task NavigateToAsync<TViewModel>(object param) where TViewModel : BaseViewModel;
         Task RemoveLastFromBackStackAsync();  
         Task RemoveBackStackAsync();
+
+        Task PreviousPage();
+        Task<bool> DisplayAlert(string title, string message, string ok, string cancel);
+
     }
 }

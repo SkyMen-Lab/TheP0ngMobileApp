@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.Design;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
@@ -33,19 +34,21 @@ namespace ThePongMobile.Services.Mocks
 
             }
         }
-        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
+
+        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
         {
             var sendingModel = new HandShakeJsonModel()
             {
                 GameCode = gameCode,
-                SchoolCode = schoolCode
+                TeamCode = schoolCode.ToUpper(),
+                IsJoining = isJoining
             };
-            string JsonToSend = JsonConvert.SerializeObject(sendingModel);
+            string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
             byte[] tcpResponse = new byte[64];
-            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(JsonToSend);
+            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
 
             server = "127.0.0.1";
-            
+
             try
             {
                 _udpClient = new UdpClient();
@@ -58,7 +61,6 @@ namespace ThePongMobile.Services.Mocks
                 ns.Close();
                 client.Close();
             }
-            
             catch (Exception e)
             {
                 return Task.FromResult(404);
@@ -78,13 +80,14 @@ namespace ThePongMobile.Services.Mocks
 
         public async Task<SchoolData> GetSchoolDataAsync(string code)
         {
+            string Acode = code.ToUpper();
             HttpClient client = new HttpClient();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
             if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5007/api/team/code/" + code;
-            else newUrl = "http://localhost:5007/api/team/code/" + code;
+                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
+            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
             string rawJson = await client.GetStringAsync(newUrl);
             SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
             return school;

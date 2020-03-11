@@ -36,8 +36,12 @@ namespace ThePongMobile.Services
         {
             throw new NotImplementedException();
         }
+        public Task<int> UserLeaving()
+        {
+            throw new NotImplementedException();
+        }
 
-        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode)
+        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool userJoined)
         {
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse(server), port);

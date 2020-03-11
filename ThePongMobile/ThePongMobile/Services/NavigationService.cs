@@ -61,6 +61,7 @@ namespace ThePongMobile.Services
                 }
             }
         }
+        
 
         public Task RemoveLastFromBackStackAsync()
         {
@@ -70,6 +71,14 @@ namespace ThePongMobile.Services
         public Task RemoveBackStackAsync()
         {
             throw new NotImplementedException();
+        }
+        public string SendGameCode(string gameCode)
+        {
+            return gameCode;
+        }
+        public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
+        {
+            return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
         }
     }
 }

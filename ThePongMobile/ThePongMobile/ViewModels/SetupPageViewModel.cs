@@ -9,7 +9,9 @@ using ThePongMobile.Services;
 using ThePongMobile.Views;
 using Xamarin.Forms;
 using System.Reflection;
+using Xamarin.Essentials;
 using ThePongMobile.ViewModels.Base;
+using System.Threading.Tasks;
 
 namespace ThePongMobile.ViewModels
 {
@@ -35,19 +37,16 @@ namespace ThePongMobile.ViewModels
         public string SchoolCode
         {
             get => _schoolCode;
-            set => SetValue(ref _schoolCode, value);
+            set => SetValue(ref _schoolCode, value?.ToUpper());
         }
         
-        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService,
-            IStorageService<SettingsModel> storageService)
+        public SetupPageViewModel(INavigationService navigationService, INetworkService networkService, IStorageService<SettingsModel> storageService)
         {
             _navigationService = navigationService;
             _networkService = networkService;
             _storageService = storageService;
             ContinueCommand = new Command(ContinueButtonPressed);
         }
-        
-
         private async void ContinueButtonPressed()
         {
             var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
@@ -64,7 +63,7 @@ namespace ThePongMobile.ViewModels
                 _storageService.SetConfiguration(settings);
                 await _navigationService.NavigateToAsync<LoginPageViewModel>();
             }
-            else 
+            else
                 HasError = true;
         }
     }
