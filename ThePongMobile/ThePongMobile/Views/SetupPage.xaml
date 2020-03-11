@@ -14,7 +14,10 @@
         <AbsoluteLayout BackgroundColor="#5D737E">
             <ic:CircleImage 
                         Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
-                        AbsoluteLayout.LayoutBounds="0.5, 0.0, 0.7, 0.7"
+                        HeightRequest="250"
+                        WidthRequest="250"
+                        Aspect="AspectFill"
+                        AbsoluteLayout.LayoutBounds="0.5, 0.25, 0.8, 0.4"
                         AbsoluteLayout.LayoutFlags="All"/>
             <Label Text="Enter in your School Code here" FontSize="Medium"
                    FontAttributes="Bold" HorizontalTextAlignment="Center"
