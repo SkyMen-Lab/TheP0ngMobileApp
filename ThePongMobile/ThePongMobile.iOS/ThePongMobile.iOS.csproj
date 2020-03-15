@@ -108,9 +108,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Asset 21ldpi.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Asset 22ldpi.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Asset 23ldpi.png">
       <Visible>false</Visible>
     </ImageAsset>

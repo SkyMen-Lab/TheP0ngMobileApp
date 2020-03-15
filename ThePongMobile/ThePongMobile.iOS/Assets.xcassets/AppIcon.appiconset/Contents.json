@@ -85,12 +85,6 @@
       "filename": "pong1024.png"
     },
     {
-      "scale": "2x",
-      "size": "20x20",
-      "idiom": "iphone",
-      "filename": "Asset 22ldpi.png"
-    },
-    {
       "scale": "3x",
       "size": "20x20",
       "idiom": "iphone",
@@ -107,6 +101,11 @@
       "size": "60x60",
       "idiom": "iphone",
       "filename": "Asset 21ldpi.png"
+    },
+    {
+      "scale": "2x",
+      "size": "20x20",
+      "idiom": "iphone"
     }
   ],
   "properties": {},
