@@ -4,39 +4,92 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.LoginPage"
              NavigationPage.HasBackButton="False"
+             NavigationPage.HasNavigationBar="False"
              ui:MaterialNavigationPage.AppBarColor="#083936">
-    <AbsoluteLayout BackgroundColor="#073047">
-        <ic:CircleImage 
-            Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
-            AbsoluteLayout.LayoutBounds="0.5, 0.0, 0.7, 0.7"
-            AbsoluteLayout.LayoutFlags="All"/>
-        <Label Text="Enter in your Game Code here" FontSize="Medium"
-               FontAttributes="Bold" HorizontalTextAlignment="Center"
-               Padding="0, 10" TextColor="white"
-               AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.9, 0.1"
-               AbsoluteLayout.LayoutFlags="All"/>
-        <ui:MaterialTextField Placeholder="Game Code"
-                              ErrorText="Invalid Game Code Entered"
-                              HasError="{Binding HasError, Mode=TwoWay}"
-                              Text="{Binding GameCode, Mode=Default}"
-                              AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.65, 0.1"
-                              AbsoluteLayout.LayoutFlags="All"/>
-        <ui:MaterialButton Text="Continue"
-                           Command="{Binding PlayButtonCommand}"
-                           AbsoluteLayout.LayoutBounds="0.5, 0.85, 0.65, 0.1"
-                           AbsoluteLayout.LayoutFlags="All"
-                           BackgroundColor="#083936"/>
-        <ui:MaterialButton Text="Reset School Code"
+     <ContentPage.Content>
+        <AbsoluteLayout BackgroundColor="#37474F">
+             <ui:MaterialIcon 
+                        Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
+                        BackgroundColor="Transparent"
+                        AbsoluteLayout.LayoutBounds="0.51, 0.1, 0.75, 0.75"
+                        AbsoluteLayout.LayoutFlags="All"/>
+            <ui:MaterialTextField Placeholder="Game Code" 
+                                  ErrorColor="Red"
+                                  PlaceholderColor="#828282"
+                                  FloatingPlaceholderColor="#828282"
+                                  HelperTextColor="#FF9800"
+                                  TextColor="#828282"
+                                  TintColor="#FF9800"
+                                  AlwaysShowUnderline="True"
+                                  ShouldAnimateUnderline="True"
+                                  LeadingIconTintColor="#FF9800"
+                                  UnderlineColor="#FF9800"
+                                  BackgroundColor="#37474F"
+                                  ErrorText="Invalid Game Code Entered"
+                                  HasError="{Binding HasError, Mode=TwoWay}"
+                                  Text="{Binding GameCode, Mode=TwoWay}"
+                                  IsTextAllCaps="True"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="Center"
+                                  AbsoluteLayout.LayoutBounds="0.5, 0.65, 1, 0.5"
+                                  AbsoluteLayout.LayoutFlags="All"/>
+            
+            <ui:MaterialButton Text="Where to find game code?"
+                           Command="{Binding TeamCodeHelpCommand}"
+                           BackgroundColor="Transparent"
+                           ButtonType="Text"
+                           FontSize="Micro"
+                           TextColor="#E5E5E5"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.65"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            <!--<ui:MaterialLabel
+                Text="Where to find game code?"
+                TextDecorations="Underline"
+                FontSize="Small"
+                TextColor="#E5E5E5"
+                AbsoluteLayout.LayoutBounds="0.5, 0.63"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+            </ui:MaterialLabel>
+            <ui:MaterialButton 
+                           Command="{Binding TeamCodeHelpCommand}"
+                           BackgroundColor="Transparent"
+                           ButtonType="Text"
+                           FontSize="Micro"
+                           TextColor="White"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.633, 0.45, 0.04"
+                           AbsoluteLayout.LayoutFlags="All"/>-->
+            <ui:MaterialButton 
+                Command="{Binding PlayButtonCommand}"
+                ImageSource="{local:EmbeddedImages ThePongMobile.Images.ContinueButton.png}"
+                BackgroundColor="#FF9800"
+                HeightRequest="130"
+                WidthRequest="130"
+                CornerRadius="260"
+                ButtonType="Flat"
+                AbsoluteLayout.LayoutBounds="0.5, 0.81"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            
+             <ui:MaterialButton Text="Reset School Code"
                            Command="{Binding ResetButtonCommand}"
-                           AbsoluteLayout.LayoutBounds="0.5, 0.99, 0.55, 0.1"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.91, 0.45, 0.05"
                            AbsoluteLayout.LayoutFlags="All"
                            BackgroundColor="Transparent"
                            ButtonType="Text"
                            TextColor="White"/>
-    </AbsoluteLayout>
+            
+             <ui:MaterialButton Text="about"
+                           ImageSource=""
+                           Command="{Binding AboutPageCommand}"
+                           BackgroundColor="Transparent"
+                           ButtonType="Text"
+                           FontSize="Micro"
+                           TextColor="White"
+                           AbsoluteLayout.LayoutBounds="0.5, 0.975"
+                           AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        </AbsoluteLayout>
+    </ContentPage.Content>
 </ContentPage>

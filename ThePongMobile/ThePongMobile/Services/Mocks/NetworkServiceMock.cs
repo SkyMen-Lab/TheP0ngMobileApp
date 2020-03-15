@@ -15,7 +15,6 @@ namespace ThePongMobile.Services.Mocks
     // ReSharper disable once ClassNeverInstantiated.Global
     public class NetworkServiceMock : INetworkService
     {
-        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
         private int _score = 1;
         byte[] directionBytes = new byte[1];
         private static UdpClient _udpClient;
@@ -34,8 +33,36 @@ namespace ThePongMobile.Services.Mocks
 
             }
         }
+        public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
+            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
 
-        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
+         public Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
+            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
+
+        public int ReceiveScore()
+        {
+           return _score++;
+        }
+
+        public async Task<SchoolData> GetSchoolDataAsync(string code)
+        {
+            string Acode = code.ToUpper();
+            HttpClient client = new HttpClient();
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+            //TODO: replace with domain
+            string newUrl;
+            if (Device.RuntimePlatform == Device.Android) 
+                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
+            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
+            SchoolData schooldata = null;
+            try
+            {
+                string rawJson = await client.GetStringAsync(newUrl);
+                schooldata = JsonConvert.DeserializeObject<SchoolData>(rawJson);
+            }catch{ }
+            return schooldata;
+        }
+        private Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
         {
             var sendingModel = new HandShakeJsonModel()
             {
@@ -69,28 +96,7 @@ namespace ThePongMobile.Services.Mocks
             {
                 return Task.FromResult<int>(httpResponse);
             }
-
             return Task.FromResult(404);
-        }
-
-        public int ReceiveScore()
-        {
-           return _score++;
-        }
-
-        public async Task<SchoolData> GetSchoolDataAsync(string code)
-        {
-            string Acode = code.ToUpper();
-            HttpClient client = new HttpClient();
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            //TODO: replace with domain
-            string newUrl;
-            if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
-            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
-            string rawJson = await client.GetStringAsync(newUrl);
-            SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
-            return school;
         }
     }
 }

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
+             x:Class="ThePongMobile.Views.AboutPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+            <ScrollView BackgroundColor="#37474F">
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Padding="50, 45">
+                    <ui:MaterialLabel 
+                        Text="What this app does: " 
+                        FontSize="Title"
+                        FontAttributes="Bold"
+                        TextColor="#FF9800"/>
+                    
+                    <ui:MaterialLabel 
+                        TextColor="#FFFFFF" 
+                        Text="This app was built as a communication medium between our backend apps to play a game of Pong. This app will save data on your device in order to know how communicate with the APIs as well as know which team  to join. This app also accesses the internet in order to transmit data wirelessly.">
+                    </ui:MaterialLabel>
+                    
+                    <ui:MaterialLabel 
+                        Text="Libraries Used: " 
+                        FontSize="Title"
+                        FontAttributes="Bold"
+                        TextColor="#FF9800"/>
+                    
+                    <ui:MaterialLabel 
+                        Text="Within this Xamarin developed app, we have used some libraries. These libraries include: Newtonsoft to parse Json and XF-Material for making a user interface with googles material design guidelines."
+                        TextColor="#FFFFFF"/>
+                    
+                    <ui:MaterialButton 
+                        Text="Leave"
+                        TextColor="#FF9800"
+                        BackgroundColor="Transparent"
+                        Command="{Binding LeaveCommand}"
+                        VerticalOptions="End">
+                    </ui:MaterialButton> 
+                </StackLayout>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

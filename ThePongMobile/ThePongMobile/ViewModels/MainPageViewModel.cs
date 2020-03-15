@@ -20,7 +20,7 @@ namespace ThePongMobile.ViewModels
             _networkService = networkService;
             _navigationService = navigationService;
             _storageService = storageService;
-            GameCode = LoginPageViewModel.Gamecode;
+            GameCode = LoginPageViewModel._Gamecode;
             Move = new Command<int>(MoveCommand);
             Back = new Command(BackCommand);
         }
@@ -44,12 +44,11 @@ namespace ThePongMobile.ViewModels
 
         public async void BackCommand()
         {
-            var certain = await _navigationService.DisplayAlert("Exit Game", "Are you sure you want to leave the game?", "OK", "Cancel");
+            var certain = await _navigationService.DisplayConfirmation("Exit Game", "Are you sure you want to leave the game?", "OK", "Cancel");
             if (certain)
             {
                 var data = _storageService.GetConfiguration();
-                var isJoining = false;
-                int response = await _networkService.MakeHandshake(data.IP, data.Port, data.SchoolCode, GameCode, isJoining);
+                int response = await _networkService.LeaveGame(data.IP, data.Port, data.SchoolCode, GameCode, false);
                 if (response == 200)
                     await _navigationService.PreviousPage();
             }

@@ -5,7 +5,6 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
-using ImageCircle.Forms.Plugin.Droid;
 
 namespace ThePongMobile.Android
 {
@@ -23,7 +22,6 @@ namespace ThePongMobile.Android
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Window.AddFlags(WindowManagerFlags.Fullscreen);
             Window.ClearFlags(WindowManagerFlags.ForceNotFullscreen);
-            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
     }

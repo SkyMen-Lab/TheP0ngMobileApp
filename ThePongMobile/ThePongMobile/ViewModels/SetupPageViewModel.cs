@@ -26,7 +26,8 @@ namespace ThePongMobile.ViewModels
         
         public override Type PageType => typeof(SetupPage);
         public ICommand ContinueCommand { get; private set; }
-        
+        public ICommand TeamCodeHelpCommand { get; private set; }
+        public ICommand AboutPageCommand { get; private set; }
 
         public bool HasError 
         {
@@ -46,11 +47,29 @@ namespace ThePongMobile.ViewModels
             _networkService = networkService;
             _storageService = storageService;
             ContinueCommand = new Command(ContinueButtonPressed);
+            TeamCodeHelpCommand = new Command(TeamCodeHelp);
+            AboutPageCommand = new Command(AboutPagePressed);
+        }
+        private async void AboutPagePressed()
+        {
+           await _navigationService.PushModalAsync<AboutPageViewModel>();
+        }
+        private async void TeamCodeHelp()
+        {
+             await _navigationService.DisplayInformation("Where to Find Team Code?"
+                 , "If you are unsure about what the team code is or where to find it" +
+                 ", you should ask a member of our team to find out more."
+                 , "OK");
         }
         private async void ContinueButtonPressed()
         {
+            if(_schoolCode == null)
+            {
+                HasError = true;
+                return;
+            }
             var schoolData = await _networkService.GetSchoolDataAsync(_schoolCode);
-            if (schoolData != null && schoolData.Config != null)
+            if (schoolData != null && schoolData.Config != null && SchoolCode != null)
             {
                 var settings = new SettingsModel()
                 {
@@ -65,6 +84,7 @@ namespace ThePongMobile.ViewModels
             }
             else
                 HasError = true;
+
         }
     }
 }

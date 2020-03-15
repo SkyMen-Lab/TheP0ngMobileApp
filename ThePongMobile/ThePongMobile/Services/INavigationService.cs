@@ -12,8 +12,13 @@ namespace ThePongMobile.Services
         Task RemoveLastFromBackStackAsync();  
         Task RemoveBackStackAsync();
 
+        Task PushModalAsync<TViewModel>() where TViewModel : BaseViewModel;
+        Task PreviousModalPage();
+
         Task PreviousPage();
-        Task<bool> DisplayAlert(string title, string message, string ok, string cancel);
+        Task<bool> DisplayConfirmation(string title, string message, string ok, string cancel);
+        Task DisplayInformation(string title, string message, string ok);
+
 
     }
 }
