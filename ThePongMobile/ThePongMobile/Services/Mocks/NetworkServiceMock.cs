@@ -51,9 +51,7 @@ namespace ThePongMobile.Services.Mocks
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
-            if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
-            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
+            newUrl = "https://api-storage.thep0ng.io/" + Acode;
             SchoolData schooldata = null;
             try
             {
