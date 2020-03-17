@@ -14,10 +14,15 @@
       <None Remove="Images\Cat.png" />
       <None Remove="Images\ContinueButton.png" />
       <None Remove="Images\Down.png" />
+      <None Remove="Images\GoBack.png" />
+      <None Remove="Images\Info.png" />
       <None Remove="Images\Up.png" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Include="Images\Info.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
       <EmbeddedResource Include="Images\BackArrow.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
@@ -29,6 +34,9 @@
       </EmbeddedResource>
       <EmbeddedResource Include="Images\Down.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Images\GoBack.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
       <EmbeddedResource Include="Images\Up.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>

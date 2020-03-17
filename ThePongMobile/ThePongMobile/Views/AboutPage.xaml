@@ -4,40 +4,130 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
              mc:Ignorable="d"
              x:Class="ThePongMobile.Views.AboutPage"
-             NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="True">
     <ContentPage.Content>
             <ScrollView BackgroundColor="#37474F">
-                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center" Padding="50, 45">
+                <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center">
+                    <AbsoluteLayout>
+                        <BoxView
+                            BackgroundColor="#263238"
+                            AbsoluteLayout.LayoutBounds="0, 0, 1, 0.7"
+                            AbsoluteLayout.LayoutFlags="All">
+                        </BoxView>
+                        <ui:MaterialButton
+                            Command="{Binding LeaveCommand}"
+                            ImageSource="{local:EmbeddedImages ThePongMobile.Images.GoBack.png}"
+                            BackgroundColor="Transparent"
+                            ButtonType="Text"
+                            AbsoluteLayout.LayoutBounds="0.03, 0.2, 0.1, 0.5"
+                            AbsoluteLayout.LayoutFlags="All">
+                        </ui:MaterialButton>
+                         <ui:MaterialLabel 
+                            Text="About" 
+                            FontSize="Title"
+                            TextColor="#F2F2F2"
+                            AbsoluteLayout.LayoutBounds="0.3, 0.27, 0.5, 0.3"
+                            AbsoluteLayout.LayoutFlags="All"/>
+                        </AbsoluteLayout>
                     <ui:MaterialLabel 
-                        Text="What this app does: " 
+                        Text="What we do: " 
                         FontSize="Title"
                         FontAttributes="Bold"
-                        TextColor="#FF9800"/>
+                        TextColor="#F2F2F2"
+                        Padding="25, 5, 25, 0"/>
                     
                     <ui:MaterialLabel 
-                        TextColor="#FFFFFF" 
-                        Text="This app was built as a communication medium between our backend apps to play a game of Pong. This app will save data on your device in order to know how communicate with the APIs as well as know which team  to join. This app also accesses the internet in order to transmit data wirelessly.">
+                        TextColor="#E0E0E0" 
+                        Text="This app was built as a communication medium between our backend apps to play a game of Pong. This app will save data on your device in order to know how communicate with the APIs as well as know which team  to join. This app also accesses the internet in order to transmit data wirelessly."
+                        Padding="25, 0, 25, 25">
                     </ui:MaterialLabel>
                     
                     <ui:MaterialLabel 
                         Text="Libraries Used: " 
                         FontSize="Title"
                         FontAttributes="Bold"
-                        TextColor="#FF9800"/>
+                        TextColor="#F2F2F2"
+                        Padding="25, 0, 25, 0"/>
                     
-                    <ui:MaterialLabel 
-                        Text="Within this Xamarin developed app, we have used some libraries. These libraries include: Newtonsoft to parse Json and XF-Material for making a user interface with googles material design guidelines."
-                        TextColor="#FFFFFF"/>
+                    <ui:MaterialLabel  Padding="25, 25, 25, 0">
+                        <Label.FormattedText  Padding="25, 25, 25, 0">
+                            <FormattedString>
+                                <Span 
+                                    Text="-Xamarin.Essentials"
+                                    TextDecorations="Underline"
+                                    TextColor="#E0E0E0">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding ClickCommand}"
+                                            CommandParameter="https://github.com/xamarin/Essentials"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                <Span
+                                    Text="                                                      ">
+                                </Span>
+                                <Span
+                                    Text="-XF.Material"
+                                    TextDecorations="Underline"
+                                    TextColor="#E0E0E0">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding ClickCommand}"
+                                            CommandParameter="https://github.com/Baseflow/XF-Material-Library"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                                 <Span
+                                    Text="                                                                  ">
+                                </Span>
+                                <Span
+                                    Text="-Newtonsoft JSON"
+                                    TextDecorations="Underline"
+                                    TextColor="#E0E0E0">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding ClickCommand}"
+                                            CommandParameter="https://github.com/JamesNK/Newtonsoft.Json"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </ui:MaterialLabel>
+                     <ui:MaterialLabel 
+                        Text="License: " 
+                        FontSize="Title"
+                        FontAttributes="Bold"
+                        TextColor="#F2F2F2"
+                         Padding="25, 25, 25, 0"/>
+                    <ui:MaterialLabel Padding="25, 0, 25, 25">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="This software is licensed under GNU General Public License v2.0 which means you have to disclosure the source noticing the copyright and license if you intend to use the code commerically. For more information visit the "
+                                      TextColor="#E0E0E0"/>
+                                <Span Text="GitHub repository"
+                                      TextDecorations="Underline"
+                                      TextColor="#E0E0E0">
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer 
+                                           Command="{Binding ClickCommand}"
+                                           CommandParameter="https://github.com/SkyMen-Lab/intro"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </ui:MaterialLabel>
                     
-                    <ui:MaterialButton 
-                        Text="Leave"
-                        TextColor="#FF9800"
-                        BackgroundColor="Transparent"
-                        Command="{Binding LeaveCommand}"
-                        VerticalOptions="End">
-                    </ui:MaterialButton> 
+                     <ui:MaterialLabel 
+                        Text="© 2020 thepong.io" 
+                        FontSize="Subtitle"
+                        FontAttributes="Bold"
+                        TextColor="#F2F2F2"
+                        Padding="0, 20" 
+                        VerticalOptions="End"
+                        HorizontalOptions="Center"/>
+                    
+       
                 </StackLayout>
             </ScrollView>
     </ContentPage.Content>

@@ -17,7 +17,7 @@
                         BackgroundColor="Transparent"
                         AbsoluteLayout.LayoutBounds="0.51, 0.1, 0.75, 0.75"
                         AbsoluteLayout.LayoutFlags="All"/>
-            <ui:MaterialTextField Placeholder="Game Code                " 
+            <ui:MaterialTextField Placeholder="Game Code                        " 
                                   ErrorColor="Red"
                                   PlaceholderColor="#828282"
                                   FloatingPlaceholderColor="#828282"
@@ -35,14 +35,14 @@
                                   IsTextAllCaps="True"
                                   VerticalOptions="Center"
                                   HorizontalOptions="Center"
-                                  AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.5, 0.5"
+                                  AbsoluteLayout.LayoutBounds="0.45, 0.65, 0.5, 0.5"
                                   AbsoluteLayout.LayoutFlags="All"/>
             <ui:MaterialLabel
                 Text="Where to find the game code?"
                 TextDecorations="Underline"
-                FontSize="Small"
-                TextColor="#E5E5E5"
-                AbsoluteLayout.LayoutBounds="0.48, 0.631"
+                FontSize="Micro"    
+                TextColor="#BDBDBD"
+                AbsoluteLayout.LayoutBounds="0.340, 0.631"
                 AbsoluteLayout.LayoutFlags="PositionProportional">
             </ui:MaterialLabel>
             <ui:MaterialButton 
@@ -51,7 +51,7 @@
                            ButtonType="Text"
                            FontSize="Micro"
                            TextColor="White"
-                           AbsoluteLayout.LayoutBounds="0.48, 0.631, 0.45, 0.04"
+                           AbsoluteLayout.LayoutBounds="0.34, 0.631, 0.4, 0.035"
                            AbsoluteLayout.LayoutFlags="All"/>
             <ui:MaterialButton 
                 Command="{Binding PlayButtonCommand}"
@@ -70,16 +70,26 @@
                            AbsoluteLayout.LayoutFlags="All"
                            BackgroundColor="Transparent"
                            ButtonType="Text"
-                           TextColor="White"/>
+                           TextColor="#BDBDBD"/>
+            <ui:MaterialIcon
+                Source="{local:EmbeddedImages ThePongMobile.Images.Info.png}"
+                AbsoluteLayout.LayoutBounds="0.42, 0.965"
+                AbsoluteLayout.LayoutFlags="PositionProportional"/>
             
-             <ui:MaterialButton Text="about"
-                           ImageSource=""
+           <ui:MaterialLabel
+                Text="About"
+                TextDecorations="Underline"
+                FontSize="Medium"    
+                TextColor="#BDBDBD"
+                AbsoluteLayout.LayoutBounds="0.5, 0.97"
+                AbsoluteLayout.LayoutFlags="PositionProportional">
+            </ui:MaterialLabel>
+            
+             <ui:MaterialButton 
                            Command="{Binding AboutPageCommand}"
                            BackgroundColor="Transparent"
                            ButtonType="Text"
-                           FontSize="Micro"
-                           TextColor="White"
-                           AbsoluteLayout.LayoutBounds="0.5, 0.975"
+                           AbsoluteLayout.LayoutBounds="0.48, 0.985"
                            AbsoluteLayout.LayoutFlags="PositionProportional"/>
         </AbsoluteLayout>
     </ContentPage.Content>

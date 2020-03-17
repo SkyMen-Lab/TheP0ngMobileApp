@@ -76,28 +76,24 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
-            await _navigationService.NavigateToAsync<MainPageViewModel>();
-
-            //var data = _storageService.GetConfiguration();
-            //if(_gameCode != null)
-            //{
-            //    int response = await _networkService.JoinGame(data.IP, data.Port, data.SchoolCode, _gameCode, true);
-            //    if (response == 200)
-            //    {
-            //        _Gamecode = _gameCode;
-            //        await _navigationService.NavigateToAsync<MainPageViewModel>();
-            //    }
-            //    else
-            //    {
-            //        HasError = true;
-            //    }
-            //}
-            //else
-            //{
-            //    HasError = true;
-            //}
-               
-            
+            var data = _storageService.GetConfiguration();
+            if (_gameCode != null)
+            {
+                int response = await _networkService.JoinGame(data.IP, data.Port, data.SchoolCode, _gameCode, true);
+                if (response == 200)
+                {
+                    _Gamecode = _gameCode;
+                    await _navigationService.NavigateToAsync<MainPageViewModel>();
+                }
+                else
+                {
+                    HasError = true;
+                }
+            }
+            else
+            {
+                HasError = true;
+            }
         }
     }
  }
