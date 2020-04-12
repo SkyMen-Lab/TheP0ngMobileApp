@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.Design;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
@@ -17,22 +18,48 @@ namespace ThePongMobile.Services.Mocks
     {
         private int _score = 1;
         byte[] directionBytes = new byte[1];
-        private static UdpClient _udpClient;
-        private static IPEndPoint _endPoint;
-
+        TcpClient gameClient;
+        NetworkStream gameStream;
 
         public void SendMessage(int direction)
         {
             directionBytes[0] = (byte)direction;
             try
             {
-                _udpClient.Send(directionBytes, 1, _endPoint);
+               gameStream.Write(directionBytes, 0, 1);
+            }
+            catch(IOException)
+            {
+                DisconnectFromGame();
             }
             catch
             {
 
             }
         }
+        private void DisconnectFromGame()
+        {
+            gameStream.FlushAsync();
+            gameStream.Close();
+            gameClient.Dispose();
+            gameClient.Close();
+        }
+        private async void ConnectToGame(string server, int port)
+        {
+            try
+            {
+                gameClient = new TcpClient();
+                await gameClient.ConnectAsync(server, port);
+                gameStream = gameClient.GetStream(); 
+            }
+            catch
+            {
+                DisconnectFromGame();
+            }
+        }
+
+
+
         public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
             => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
 
@@ -76,15 +103,12 @@ namespace ThePongMobile.Services.Mocks
 
             try
             {
-                _udpClient = new UdpClient();
-                _endPoint = new IPEndPoint(IPAddress.Parse(server), port);
-
-                TcpClient client = new TcpClient(server, port + 1);
-                NetworkStream ns = client.GetStream();
+                TcpClient handshakeClient = new TcpClient(server, port + 1);
+                NetworkStream ns = handshakeClient.GetStream();
                 ns.Write(schoolCodeBytes, 0, schoolCodeBytes.Length);
                 ns.Read(tcpResponse, 0, tcpResponse.Length);
                 ns.Close();
-                client.Close();
+                handshakeClient.Close();
             }
             catch (Exception e)
             {
@@ -92,6 +116,12 @@ namespace ThePongMobile.Services.Mocks
             }
             if (int.TryParse(Encoding.ASCII.GetString(tcpResponse), out int httpResponse))
             {
+                if(httpResponse == 200)
+                {
+                    //With a correct User Joined event from router, it will start an
+                    //async connection to the router filter.
+                    ConnectToGame(server, port);
+                }
                 return Task.FromResult<int>(httpResponse);
             }
             return Task.FromResult(404);
