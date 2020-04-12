@@ -54,13 +54,12 @@ namespace ThePongMobile.Services
             socket.Close();
             return Task.FromResult<int>(tcpResponse[0]);
         }
-
-        public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining)
+        public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining, ConnectionType connectionType)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining)
+        public Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining, ConnectionType connectionType)
         {
             throw new NotImplementedException();
         }
