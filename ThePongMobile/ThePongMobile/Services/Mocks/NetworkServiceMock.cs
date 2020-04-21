@@ -87,7 +87,7 @@ namespace ThePongMobile.Services.Mocks
                 ns.Close();
                 handshakeClient.Close();
             }
-            catch (Exception e)
+            catch
             {
                 return Task.FromResult(404);
             }
