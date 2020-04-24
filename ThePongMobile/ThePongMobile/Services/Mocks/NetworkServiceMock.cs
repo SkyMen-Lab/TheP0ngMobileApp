@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using ThePongMobile.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace ThePongMobile.Services.Mocks
 {
@@ -54,7 +55,7 @@ namespace ThePongMobile.Services.Mocks
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
-            newUrl = "https://api-storage.thep0ng.io/" + Acode;
+            newUrl = "https://api.thep0ng.net/storage/api/team/code/" + Acode;
             SchoolData schooldata = null;
             try
             {
@@ -76,7 +77,7 @@ namespace ThePongMobile.Services.Mocks
             byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
 
-            server = "127.0.0.1";
+            server = "178.62.110.205";
 
             try
             {
@@ -133,19 +134,20 @@ namespace ThePongMobile.Services.Mocks
         }
         private void FindGameUDP(string server, int port)
         {
-             _udpClient = new UdpClient();
+            _udpClient = new UdpClient();
             _endPoint = new IPEndPoint(IPAddress.Parse(server), port);
+            _udpClient.Connect(_endPoint);
         }
         private void SendMessageUDP(int direction)
         {
             directionBytes[0] = (byte)direction;
             try
             {
-                _udpClient.Send(directionBytes, 1, _endPoint);
+                _udpClient.Send(directionBytes, 1);
             }
-            catch
+            catch (Exception e)
             {
-
+                Log.Warning("error", e.Message);
             }
         }
         private void SendMessageTCP(int direction)
