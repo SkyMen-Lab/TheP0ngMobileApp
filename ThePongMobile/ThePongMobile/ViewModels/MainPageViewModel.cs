@@ -48,7 +48,7 @@ namespace ThePongMobile.ViewModels
             if (certain)
             {
                 var data = _storageService.GetConfiguration();
-                int response = await _networkService.LeaveGame(data.IP, data.Port, data.SchoolCode, GameCode, false, data.ConnectionType);
+                int response = await _networkService.LeaveGame(data.IP, data.Port, data.SchoolCode, GameCode, false);
                 if (response == 200)
                     await _navigationService.PreviousPage();
             }

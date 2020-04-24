@@ -79,7 +79,7 @@ namespace ThePongMobile.ViewModels
             var data = _storageService.GetConfiguration();
             if (_gameCode != null)
             {
-                int response = await _networkService.JoinGame(data.IP, data.Port, data.SchoolCode, _gameCode, true, data.ConnectionType);
+                int response = await _networkService.JoinGame(data.IP, data.Port, data.SchoolCode, _gameCode, true);
                 if (response == 200)
                 {
                     _Gamecode = _gameCode;
