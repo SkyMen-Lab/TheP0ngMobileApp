@@ -9,6 +9,7 @@ namespace ThePongMobile.Services
         Task InitAsync();
         Task NavigateToAsync<TViewModel>() where TViewModel : BaseViewModel;
         Task NavigateToAsync<TViewModel>(object param) where TViewModel : BaseViewModel;
+
         Task RemoveLastFromBackStackAsync();  
         Task RemoveBackStackAsync();
 
@@ -18,7 +19,5 @@ namespace ThePongMobile.Services
         Task PreviousPage();
         Task<bool> DisplayConfirmation(string title, string message, string ok, string cancel);
         Task DisplayInformation(string title, string message, string ok);
-
-
     }
 }
