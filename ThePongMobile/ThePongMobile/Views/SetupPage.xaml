@@ -1,43 +1,95 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:ic="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
-             xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
-             mc:Ignorable="d"
-             x:Class="ThePongMobile.Views.SetupPage"
-             NavigationPage.HasBackButton="False"
-             ui:MaterialNavigationPage.AppBarColor="#02111B">
-    <ContentPage.Content>
-        <AbsoluteLayout BackgroundColor="#5D737E">
-            <ic:CircleImage 
-                        Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
-                        HeightRequest="250"
-                        WidthRequest="250"
-                        Aspect="AspectFill"
-                        AbsoluteLayout.LayoutBounds="0.5, 0.25, 0.8, 0.4"
-                        AbsoluteLayout.LayoutFlags="All"/>
-            <Label Text="Enter in your School Code here" FontSize="Medium"
-                   FontAttributes="Bold" HorizontalTextAlignment="Center"
-                   Padding="0, 10" TextColor="#FCFCFC"
-                   AbsoluteLayout.LayoutBounds="0.5, 0.65, 0.9, 0.1"
-                   AbsoluteLayout.LayoutFlags="All"/>
-            <ui:MaterialTextField Placeholder="School Code" 
-                                  ErrorColor="Red"
-                                  BackgroundColor="#FCFCFC"
-                                  ErrorText="Invalid School Code Entered"
-                                  HasError="{Binding HasError, Mode=TwoWay}"
-                                  Text="{Binding SchoolCode, Mode=TwoWay}"
-                                  AbsoluteLayout.LayoutBounds="0.5, 0.75, 0.65, 0.1"
-                                  AbsoluteLayout.LayoutFlags="All"/>
-            <ui:MaterialButton Text="Continue"
-                               Command="{Binding ContinueCommand}"
-                               AbsoluteLayout.LayoutBounds="0.5, 0.85, 0.65, 0.1"
-                               AbsoluteLayout.LayoutFlags="All"
-                               TextColor="#FCFCFC"
-                               BackgroundColor="#02111B"/>
-        </AbsoluteLayout>
-    </ContentPage.Content>
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+			 xmlns:local="clr-namespace:ThePongMobile.MarkUpExtentions"
+			 mc:Ignorable="d"
+			 x:Class="ThePongMobile.Views.SetupPage"
+			 NavigationPage.HasBackButton="False"
+			 NavigationPage.HasNavigationBar="False"
+			 BackgroundColor="#37474F">
+	<ContentPage.Content>
+		<FlexLayout Direction="Column"
+					AlignContent="Center"
+					JustifyContent="SpaceBetween">
+			<BoxView BackgroundColor="Transparent" HeightRequest="100"> </BoxView>
+			
+			<ui:MaterialIcon 
+						Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
+						BackgroundColor="Transparent"
+						FlexLayout.Basis="45%"
+						FlexLayout.AlignSelf="Center"/>
+			<StackLayout FlexLayout.AlignSelf="Center">
+			<ui:MaterialTextField Placeholder="School Code" 
+								  ErrorColor="Red"
+								  PlaceholderColor="#828282"
+								  FloatingPlaceholderColor="#828282"
+								  HelperTextColor="#FF9800"
+								  TextColor="#FF9800"
+								  TintColor="#FF9800"
+								  AlwaysShowUnderline="True"
+								  ShouldAnimateUnderline="True"
+								  LeadingIconTintColor="#FF9800"
+								  UnderlineColor="#FF9800"
+								  BackgroundColor="#37474F"
+								  ErrorText="Invalid Team Code Entered"
+								  HasError="{Binding HasError, Mode=TwoWay}"
+								  Text="{Binding SchoolCode, Mode=TwoWay}"
+								  IsTextAllCaps="True"
+								  WidthRequest="150"
+								  FlexLayout.AlignSelf="Center"/>
+			<ui:MaterialLabel             
+				FontSize="Micro"    
+				TextColor="#BDBDBD"
+				FlexLayout.AlignSelf="Center"
+				Padding="0, 10, 0, 0">
+				<Label.FormattedText>
+							<FormattedString>
+								<Span 
+									Text="Where do I find the Team code?"
+									TextDecorations="Underline"
+									TextColor="#E0E0E0">
+									<Span.GestureRecognizers>
+										<TapGestureRecognizer
+											Command="{Binding TeamCodeHelpCommand}">
+										</TapGestureRecognizer>
+									</Span.GestureRecognizers>
+								</Span>
+							</FormattedString>
+				</Label.FormattedText>
+			</ui:MaterialLabel>
+			</StackLayout>
+			<ui:MaterialButton 
+				Command="{Binding ContinueCommand}"
+				ImageSource="{local:EmbeddedImages ThePongMobile.Images.ContinueButton.png}"
+				BackgroundColor="#FF9800"
+				HeightRequest="100"
+				WidthRequest="100"
+				CornerRadius="200"
+				ButtonType="Flat"
+				FlexLayout.AlignSelf="Center"/>
+			
+			<ui:MaterialButton Text=""
+						   Command="{Binding ResetButtonCommand}"
+						   BackgroundColor="Transparent"
+						   ButtonType="Text"
+						   TextColor="#BDBDBD"
+						   FlexLayout.AlignSelf="Center"
+						   AllCaps="False"
+						   IsEnabled="False"/>
+
+			<ui:MaterialButton
+				Command="{Binding AboutPageCommand}"
+				Text="ⓘ About"
+				FontSize="Small"    
+				AllCaps="False"
+				BackgroundColor="Transparent"
+				ButtonType="Text"
+				TextColor="#BDBDBD"
+				FlexLayout.AlignSelf="Center">
+			</ui:MaterialButton>
+		</FlexLayout>
+	</ContentPage.Content>
 </ContentPage>

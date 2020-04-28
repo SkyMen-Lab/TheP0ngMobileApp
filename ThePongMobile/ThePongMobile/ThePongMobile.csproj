@@ -10,33 +10,50 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Images\backIcon.png" />
+      <None Remove="Images\BackArrow.png" />
       <None Remove="Images\Cat.png" />
-      <None Remove="Images\downArrow.png" />
-      <None Remove="Images\upArrow.png" />
+      <None Remove="Images\ContinueButton.png" />
+      <None Remove="Images\Down.png" />
+      <None Remove="Images\GoBack.png" />
+      <None Remove="Images\Info.png" />
+      <None Remove="Images\Up.png" />
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Images\backIcon.png">
+      <EmbeddedResource Include="Images\Info.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Images\BackArrow.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </EmbeddedResource>
       <EmbeddedResource Include="Images\Cat.png">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </EmbeddedResource>
-      <EmbeddedResource Include="Images\downArrow.png" />
-      <EmbeddedResource Include="Images\upArrow.png" />
+      <EmbeddedResource Include="Images\ContinueButton.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Images\Down.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Images\GoBack.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </EmbeddedResource>
+      <EmbeddedResource Include="Images\Up.png">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </EmbeddedResource>
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-        <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
-        <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="3.0.0.5" />
-        <PackageReference Include="Xamarin.Essentials" Version="1.5.1" />
-        <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-        <PackageReference Include="XF.Material" Version="1.5.8" />
+        <PackageReference Include="Xamarin.Essentials" Version="1.5.3" />
+        <PackageReference Include="Xamarin.Forms" Version="4.5.0.617" />
+        <PackageReference Include="XF.Material" Version="1.6.3" />
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Views\AboutPage.xaml">
+        <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      </EmbeddedResource>
       <EmbeddedResource Update="Views\LoginPage.xaml">
         <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       </EmbeddedResource>

@@ -16,6 +16,7 @@ namespace ThePongMobile.ViewModels.Base
             _container.Register<LoginPageViewModel>();
             _container.Register<SetupPageViewModel>();
             _container.Register<MainPageViewModel>();
+            _container.Register<AboutPageViewModel>();
         }
 
         public static void RegisterServices(bool useMocks)

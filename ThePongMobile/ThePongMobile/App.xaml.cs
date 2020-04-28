@@ -26,12 +26,16 @@ namespace ThePongMobile
             // Handle when your app starts
             await InitNavigation();
         }
-
         protected override void OnSleep()
         {
-            // Handle when your app sleeps
-        }
+            if (MainPageViewModel.InGame)
+            {
+                var RegisterLeave = new MainPageViewModel();
+                RegisterLeave.OnAppSleep();
 
+            }
+            
+        }
         protected override void OnResume()
         {
             // Handle when your app resumes

@@ -9,13 +9,13 @@ using Newtonsoft.Json;
 using ThePongMobile.Models;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace ThePongMobile.Services.Mocks
 {
     // ReSharper disable once ClassNeverInstantiated.Global
     public class NetworkServiceMock : INetworkService
     {
-        private const string URL = "https://my-json-server.typicode.com/nnugget/TravelRecord/posts";
         private int _score = 1;
         byte[] directionBytes = new byte[1];
         private static UdpClient _udpClient;
@@ -34,44 +34,11 @@ namespace ThePongMobile.Services.Mocks
 
             }
         }
+        public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
+            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
 
-        public Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
-        {
-            var sendingModel = new HandShakeJsonModel()
-            {
-                GameCode = gameCode,
-                TeamCode = schoolCode.ToUpper(),
-                IsJoining = isJoining
-            };
-            string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
-            byte[] tcpResponse = new byte[64];
-            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
-
-            server = "127.0.0.1";
-
-            try
-            {
-                _udpClient = new UdpClient();
-                _endPoint = new IPEndPoint(IPAddress.Parse(server), port);
-
-                TcpClient client = new TcpClient(server, port + 1);
-                NetworkStream ns = client.GetStream();
-                ns.Write(schoolCodeBytes, 0, schoolCodeBytes.Length);
-                ns.Read(tcpResponse, 0, tcpResponse.Length);
-                ns.Close();
-                client.Close();
-            }
-            catch (Exception e)
-            {
-                return Task.FromResult(404);
-            }
-            if (int.TryParse(Encoding.ASCII.GetString(tcpResponse), out int httpResponse))
-            {
-                return Task.FromResult<int>(httpResponse);
-            }
-
-            return Task.FromResult(404);
-        }
+         public Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
+            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
 
         public int ReceiveScore()
         {
@@ -85,12 +52,50 @@ namespace ThePongMobile.Services.Mocks
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
-            if (Device.RuntimePlatform == Device.Android) 
-                 newUrl = "http://10.0.2.2:5007/api/team/code/" + Acode;
-            else newUrl = "http://localhost:5007/api/team/code/" + Acode;
-            string rawJson = await client.GetStringAsync(newUrl);
-            SchoolData school = JsonConvert.DeserializeObject<SchoolData>(rawJson);
-            return school;
+            newUrl = "https://api.thep0ng.net/storage/api/team/code/" + Acode;
+            SchoolData schooldata = null;
+            try
+            {
+                string rawJson = await client.GetStringAsync(newUrl);
+                schooldata = JsonConvert.DeserializeObject<SchoolData>(rawJson);
+            }catch{ }
+            return schooldata;
+        }
+        private Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
+        {
+            var sendingModel = new HandShakeJsonModel()
+            {
+                GameCode = gameCode,
+                TeamCode = schoolCode.ToUpper(),
+                IsJoining = isJoining
+            };
+            string jsonToSend =  JsonConvert.SerializeObject(sendingModel);
+            byte[] tcpResponse = new byte[64];
+            byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
+
+            server = "178.62.110.205";
+
+            try
+            {
+                _udpClient = new UdpClient();
+                _endPoint = new IPEndPoint(IPAddress.Parse(server), port);
+
+                TcpClient client = new TcpClient(server, port + 1);
+                NetworkStream ns = client.GetStream();
+                ns.Write(schoolCodeBytes, 0, schoolCodeBytes.Length);
+                ns.Read(tcpResponse, 0, tcpResponse.Length);
+                ns.Close();
+                client.Close();
+            }
+            catch
+            {
+                return Task.FromResult(404);
+            }
+            if (int.TryParse(Encoding.ASCII.GetString(tcpResponse), out int httpResponse))
+            {
+                return Task.FromResult<int>(httpResponse);
+            }
+            return Task.FromResult(404);
         }
     }
 }

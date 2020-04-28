@@ -50,7 +50,7 @@ namespace ThePongMobile.Services
         {
             var viewModel = IoContainer.Resolve(typeof(TViewModel)) as TViewModel;
             var page = _viewLocatorService.GetPageFromViewModel(viewModel);
-            
+
             if (page is SetupPage) Application.Current.MainPage = new CustomNavPage(page);
             else
             {
@@ -61,8 +61,6 @@ namespace ThePongMobile.Services
                 }
             }
         }
-        
-
         public Task RemoveLastFromBackStackAsync()
         {
             throw new NotImplementedException();
@@ -72,13 +70,26 @@ namespace ThePongMobile.Services
         {
             throw new NotImplementedException();
         }
-        public string SendGameCode(string gameCode)
+        public async Task DisplayInformation(string title, string message, string ok)
         {
-            return gameCode;
+            await Application.Current.MainPage.DisplayAlert(title, message, ok);
         }
-        public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
+        public async Task<bool> DisplayConfirmation(string title, string message, string ok, string cancel)
         {
             return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
         }
+        public async Task PushModalAsync<TViewModel>() where TViewModel : BaseViewModel
+        {
+            var viewModel = IoContainer.Resolve(typeof(TViewModel)) as TViewModel;
+            var page = _viewLocatorService.GetPageFromViewModel(viewModel);
+
+            await Application.Current.MainPage.Navigation.PushModalAsync(page);
+        }
+
+        public async Task PreviousModalPage() 
+        {
+            await Application.Current.MainPage.Navigation.PopModalAsync();
+        }
+       
     }
 }
