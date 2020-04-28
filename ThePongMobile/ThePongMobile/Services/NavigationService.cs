@@ -61,8 +61,6 @@ namespace ThePongMobile.Services
                 }
             }
         }
-        
-
         public Task RemoveLastFromBackStackAsync()
         {
             throw new NotImplementedException();
@@ -92,5 +90,6 @@ namespace ThePongMobile.Services
         {
             await Application.Current.MainPage.Navigation.PopModalAsync();
         }
+       
     }
 }
