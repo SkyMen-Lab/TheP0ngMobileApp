@@ -53,14 +53,13 @@ namespace ThePongMobile.ViewModels
         public async void BackCommand()
         {
             InGame = false;
-            await _navigationService.PreviousPage();
             var certain = await _navigationService.DisplayConfirmation("Exit Game", "Are you sure you want to leave the game?", "OK", "Cancel");
             if (certain)
             {
                 int response = await Leave(false);
                 if (response == 200)
                 {
-                    await _navigationService.NavigateToAsync<LoginPageViewModel>();
+                    await _navigationService.PreviousPage();
                     InGame = false;
                 }
             }

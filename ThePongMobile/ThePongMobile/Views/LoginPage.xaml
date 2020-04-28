@@ -38,7 +38,7 @@
 								  BackgroundColor="#37474F"
 								  ErrorText="Invalid Team Code Entered"
 								  HasError="{Binding HasError, Mode=TwoWay}"
-								  Text="{Binding SchoolCode, Mode=TwoWay}"
+								  Text="{Binding GameCode, Mode=TwoWay}"
 								  IsTextAllCaps="True"
 								  WidthRequest="150"
 								  FlexLayout.AlignSelf="Center"/>
