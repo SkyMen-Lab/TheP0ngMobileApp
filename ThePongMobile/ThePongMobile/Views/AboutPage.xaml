@@ -9,32 +9,35 @@
 			 x:Class="ThePongMobile.Views.AboutPage"
 			 NavigationPage.HasNavigationBar="True">
 	<ContentPage.Content>
-			<ScrollView BackgroundColor="#37474F">
+		<StackLayout
+			BackgroundColor="#37474F">
+			<StackLayout  BackgroundColor="#263238"
+			              Spacing="5"
+			              Orientation="Horizontal"
+			              Padding="5, 20, 0, 5">
+				<ui:MaterialButton
+					WidthRequest="50"
+					HeightRequest="50"
+					HorizontalOptions="Start"
+					VerticalOptions="CenterAndExpand"
+					Command="{Binding LeaveCommand}"
+					ImageSource="{local:EmbeddedImages ThePongMobile.Images.GoBack.png}"
+					ButtonType="Text">
+				</ui:MaterialButton>
+				<ui:MaterialLabel 
+					VerticalOptions="Center"
+					HorizontalOptions="Center"
+					Text="About" 
+					FontSize="Title"
+					TextColor="#F2F2F2"
+					AbsoluteLayout.LayoutBounds="0.3, 0.27, 0.5, 0.3"
+					AbsoluteLayout.LayoutFlags="All"/>
+			</StackLayout>
+			<ScrollView>
 				<FlexLayout  Direction="Column"
 							 AlignContent="Center"
 							 JustifyContent="SpaceBetween">
-					<AbsoluteLayout>
-						<BoxView
-							BackgroundColor="#263238"
-							AbsoluteLayout.LayoutBounds="0, 0, 1, 0.7"
-							AbsoluteLayout.LayoutFlags="All">
-						</BoxView>
-						<ui:MaterialButton
-							Command="{Binding LeaveCommand}"
-							ImageSource="{local:EmbeddedImages ThePongMobile.Images.GoBack.png}"
-							BackgroundColor="Transparent"
-							ButtonType="Text"
-							AbsoluteLayout.LayoutBounds="0.03, 0.2, 0.1, 0.5"
-							AbsoluteLayout.LayoutFlags="All">
-						</ui:MaterialButton>
-						 <ui:MaterialLabel 
-							Text="About" 
-							FontSize="Title"
-							TextColor="#F2F2F2"
-							AbsoluteLayout.LayoutBounds="0.3, 0.27, 0.5, 0.3"
-							AbsoluteLayout.LayoutFlags="All"/>
-						</AbsoluteLayout>
-					<StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="Center">
+					<StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="CenterAndExpand">
 					
 					<ui:MaterialLabel 
 						Text="What we do: " 
@@ -158,5 +161,6 @@
 					 Padding="0, 0, 0, 10"/>
 				</FlexLayout>
 			</ScrollView>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>
