@@ -63,6 +63,7 @@ namespace ThePongMobile.ViewModels
         }
         private async void ContinueButtonPressed()
         {
+
             if (_schoolCode == null)
             {
                 HasError = true;

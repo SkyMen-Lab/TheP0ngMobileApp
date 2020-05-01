@@ -11,20 +11,46 @@
 			 NavigationPage.HasNavigationBar="False"
 			 ui:MaterialNavigationPage.AppBarColor="#083936"
 			 BackgroundColor="#37474F">
-	 <ContentPage.Content>
-		<FlexLayout Direction="Column"
-					AlignContent="Center"
-					JustifyContent="SpaceBetween">
-			<BoxView BackgroundColor="Transparent" HeightRequest="100"> </BoxView>
-			
+	<ScrollView Orientation="Neither">
+		<Grid>
+			<Grid.RowDefinitions>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+					<RowDefinition Height="*"/>
+				</Grid.RowDefinitions> 
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="*"/>
+				</Grid.ColumnDefinitions>  
 			<ui:MaterialIcon 
 						Source="{local:EmbeddedImages ThePongMobile.Images.Cat.png}"
 						BackgroundColor="Transparent"
-						FlexLayout.Basis="45%"
-						FlexLayout.AlignSelf="Center"/>
-			<StackLayout FlexLayout.AlignSelf="Center">
-			<ui:MaterialTextField x:Name="TeamCodeField"
-								  Placeholder="Game Code" 
+						Grid.Row="1"
+						Grid.RowSpan="4"
+						Grid.Column="0"
+						Grid.ColumnSpan="11"/>
+			
+			<StackLayout	      Grid.Row="5"
+								  Grid.RowSpan="1"
+								  Grid.Column="3"
+								  Grid.ColumnSpan="5">
+				
+			<ui:MaterialTextField Placeholder="Game Code" 
 								  ErrorColor="Red"
 								  PlaceholderColor="#828282"
 								  FloatingPlaceholderColor="#828282"
@@ -36,17 +62,31 @@
 								  LeadingIconTintColor="#FF9800"
 								  UnderlineColor="#FF9800"
 								  BackgroundColor="#37474F"
-								  ErrorText="Invalid Team Code Entered"
+								  ErrorText="Invalid Game Code Entered"
 								  HasError="{Binding HasError, Mode=TwoWay}"
 								  Text="{Binding GameCode, Mode=TwoWay}"
 								  IsTextAllCaps="True"
-								  WidthRequest="150"
-								  FlexLayout.AlignSelf="Center"/>
-			<ui:MaterialLabel             
+								  WidthRequest="150"/>
+			</StackLayout>
+			<ui:MaterialButton 
+				Command="{Binding PlayButtonCommand}"
+				ImageSource="{local:EmbeddedImages ThePongMobile.Images.ContinueButton.png}"
+				BackgroundColor="#FF9800"
+				CornerRadius="5"
+				ButtonType="Flat"
+				Grid.Row="6"
+				Grid.RowSpan="1"
+				Grid.Column="3"
+				Grid.ColumnSpan="5"/>
+			
+			<ui:MaterialLabel 
+				HorizontalTextAlignment="Center"
 				FontSize="Micro"    
 				TextColor="#BDBDBD"
-				FlexLayout.AlignSelf="Center"
-				Padding="0, 10, 0, 0">
+				Grid.Row="7"
+				Grid.RowSpan="1"
+				Grid.Column="3"
+				Grid.ColumnSpan="5">
 				<Label.FormattedText>
 							<FormattedString>
 								<Span 
@@ -62,18 +102,7 @@
 							</FormattedString>
 				</Label.FormattedText>
 			</ui:MaterialLabel>
-			</StackLayout>
-			 
-			<ui:MaterialButton 
-				Command="{Binding PlayButtonCommand}"
-				ImageSource="{local:EmbeddedImages ThePongMobile.Images.ContinueButton.png}"
-				BackgroundColor="#FF9800"
-				HeightRequest="100"
-				WidthRequest="100"
-				CornerRadius="200"
-				ButtonType="Flat"
-				FlexLayout.AlignSelf="Center"/>
-            
+			
 			<ui:MaterialButton Text="Reset Team Code"
 						   Command="{Binding ResetButtonCommand}"
 						   AbsoluteLayout.LayoutBounds="0.5, 0.91"
@@ -81,9 +110,13 @@
 						   BackgroundColor="Transparent"
 						   ButtonType="Text"
 						   TextColor="#BDBDBD"
-                           FlexLayout.AlignSelf="Center"
-                           AllCaps="False"/>
-            
+						   FlexLayout.AlignSelf="Center"
+						   AllCaps="False"
+						   Grid.Row="8"
+						   Grid.RowSpan="1"
+						   Grid.Column="3"
+						   Grid.ColumnSpan="5"/>
+			
 			<ui:MaterialButton
 				Command="{Binding AboutPageCommand}"
 				Text="ⓘ About"
@@ -92,8 +125,12 @@
 				BackgroundColor="Transparent"
 				ButtonType="Text"
 				TextColor="#BDBDBD"
-				FlexLayout.AlignSelf="Center">
+				FlexLayout.AlignSelf="Center"
+				Grid.Row="9"
+				Grid.RowSpan="1"
+				Grid.Column="4"
+				Grid.ColumnSpan="3">
 			</ui:MaterialButton>
-		</FlexLayout>
-	</ContentPage.Content>
+		</Grid>
+	 </ScrollView>
 </ContentPage>

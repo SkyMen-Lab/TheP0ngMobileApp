@@ -76,6 +76,7 @@ namespace ThePongMobile.ViewModels
         
         private async void PlayButtonPressed()
         {
+
             var data = _storageService.GetConfiguration();
             if (_gameCode != null)
             {
