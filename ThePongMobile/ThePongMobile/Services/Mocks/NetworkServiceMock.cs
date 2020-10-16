@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Concurrent;
 using System.ComponentModel.Design;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using ThePongMobile.Models;
@@ -20,25 +22,50 @@ namespace ThePongMobile.Services.Mocks
         byte[] directionBytes = new byte[1];
         private static UdpClient _udpClient;
         private static IPEndPoint _endPoint;
+        private ConcurrentQueue<int> _directionQueue;
+        private Thread _readThread;
 
 
         public void SendMessage(int direction)
         {
-            directionBytes[0] = (byte)direction;
-            try
+            _directionQueue.Enqueue(direction);
+        }
+        
+        private void ReadQueueAndSendMessage()
+        {
+            while (true)
             {
-                _udpClient.Send(directionBytes, 1, _endPoint);
-            }
-            catch
-            {
-
+                int direction;
+                if (_directionQueue.TryDequeue(out direction))
+                {
+                    directionBytes[0] = (byte)direction;
+                    try
+                    {
+                        _udpClient.Send(directionBytes, 1, _endPoint);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
+                }
             }
         }
-        public Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
-            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
 
-         public Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining) 
-            => MakeHandshake(server, port, schoolCode, gameCode, isJoining);
+        public async Task<int> LeaveGame(string server, int port, string schoolCode, string gameCode, bool isJoining)
+        {
+            _readThread.Abort();
+            _readThread = null;
+            return await MakeHandshake(server, port, schoolCode, gameCode, isJoining);
+        }
+
+        public async Task<int> JoinGame(string server, int port, string schoolCode, string gameCode, bool isJoining)
+        {
+            _directionQueue = new ConcurrentQueue<int>();
+            _readThread = new Thread(ReadQueueAndSendMessage);
+            _readThread.IsBackground = true;
+            _readThread.Start();
+            return await MakeHandshake(server, port, schoolCode, gameCode, isJoining);
+        }
 
         public int ReceiveScore()
         {
@@ -52,13 +79,15 @@ namespace ThePongMobile.Services.Mocks
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
             //TODO: replace with domain
             string newUrl;
-            newUrl = "https://api.thep0ng.net/storage/api/team/code/" + Acode;
+            newUrl = "http://10.4.191.231/api/team/code/" + Acode;
             SchoolData schooldata = null;
             try
             {
                 string rawJson = await client.GetStringAsync(newUrl);
                 schooldata = JsonConvert.DeserializeObject<SchoolData>(rawJson);
-            }catch{ }
+            }catch (Exception e){
+                Console.WriteLine(e.Message);
+            }
             return schooldata;
         }
         private Task<int> MakeHandshake(string server, int port, string schoolCode, string gameCode, bool isJoining)
@@ -73,7 +102,7 @@ namespace ThePongMobile.Services.Mocks
             byte[] tcpResponse = new byte[64];
             byte[] schoolCodeBytes = Encoding.ASCII.GetBytes(jsonToSend);
 
-            server = "178.62.110.205";
+            //server = "10.4.191.231";
 
             try
             {

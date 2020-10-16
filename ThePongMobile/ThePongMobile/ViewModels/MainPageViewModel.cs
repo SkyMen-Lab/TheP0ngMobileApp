@@ -24,7 +24,7 @@ namespace ThePongMobile.ViewModels
             _navigationService = navigationService;
             _storageService = storageService;
             GameCode = LoginPageViewModel._Gamecode;
-            Move = new Command<int>(MoveCommand);
+            Move = new Command<short>(MoveCommand);
             Back = new Command(BackCommand);
             InGame = true;
         }
@@ -45,9 +45,12 @@ namespace ThePongMobile.ViewModels
             set => SetValue(ref _score, value);
         }
 
-        private void MoveCommand(int direction)
+        private void MoveCommand(short direction)
         {
-            _networkService.SendMessage(direction);
+            try
+            {
+                _networkService.SendMessage(direction);
+            } catch { }
         }
 
         public async void BackCommand()

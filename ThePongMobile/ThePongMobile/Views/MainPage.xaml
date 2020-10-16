@@ -37,7 +37,7 @@
                 Grid.Column="2">
         </material:MaterialButton>
         
-        <material:MaterialButton
+        <Button
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.Up.png}"
                 Command="{Binding Move}"
                 BackgroundColor="#FF9800"
@@ -45,13 +45,13 @@
                 Grid.ColumnSpan="3"
                 Grid.Row="1"
                 Grid.RowSpan="3">
-        <material:MaterialButton.CommandParameter>
-            <x:Int32>
+        <Button.CommandParameter>
+            <x:Int16>
                 1
-            </x:Int32>
-        </material:MaterialButton.CommandParameter>
-            </material:MaterialButton>
-                <material:MaterialButton
+            </x:Int16>
+        </Button.CommandParameter>
+            </Button>
+                <Button
                 ImageSource="{local1:EmbeddedImages ID=ThePongMobile.Images.Down.png}"
                 Command="{Binding Move}"
                 BackgroundColor="#FF9800"
@@ -59,12 +59,12 @@
                 Grid.ColumnSpan="3"
                 Grid.Row="5"
                 Grid.RowSpan="3">
-            <material:MaterialButton.CommandParameter>
-                <x:Int32>
+            <Button.CommandParameter>
+                <x:Int16>
                     0
-                </x:Int32>
-            </material:MaterialButton.CommandParameter>
-        </material:MaterialButton>
+                </x:Int16>
+            </Button.CommandParameter>
+        </Button>
     </Grid>
     
   
